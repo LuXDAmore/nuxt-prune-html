@@ -1,9 +1,9 @@
 node_modules
+bower_components
 *.iml
 .idea
 *.log*
 .nuxt
-.vscode
 .DS_Store
 coverage
 dist
