@@ -54,7 +54,7 @@ ___
 
 ### Advices
 
-- before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) and navigate;
+- before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website;
 - this plugin is made for working with Bots and it uses only the `remove()` method of `Cheerio`;
 - if you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior changing `hookGeneratePage` to `false`);
 - if you use some `client-only` components, you should prepare a version that is visually the same as the `client-only` and use it in the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
@@ -64,7 +64,7 @@ ___
 
 - It use the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library to check if `.is( 'bot' )`, `.match( options.lighthouseUserAgent )` or `.match( options.matchUserAgent )`;
 - Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), so the plugin has access to `req.headers[ 'user-agent' ]` only if the project is **running as a server** (ex. `nuxt start`);
-- [Cheerio](https://github.com/cheeriojs/cheerio).
+- It use the [Cheerio](https://github.com/cheeriojs/cheerio), jQuery for servers, library to prune the html.
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 ## Configuration
 
-**_N.B. : Shallow merge, not deep merge._**
+**_N.B. : the config is only shallow merged, not deep merged._**
 
 ```js
 
