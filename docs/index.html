@@ -15,7 +15,7 @@
 <h2>&#x1F498; Motivation</h2>
 <p>Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles).
 So, usually, for a bot or for a human, the website its almost visually the same.</p>
-<p>These library was born to remove the scripts injected in the HTML only if a visitor is a <strong>Bot</strong> or a <strong>Chrome Lighthouse</strong>. This should <strong>speed up</strong> (<strong>blazing fast</strong>) your <em>nuxt-website</em> up to a value of <strong>~ 95</strong> in <strong>performance</strong> during an <em>Audit</em> because it <a href="https://web.dev/lighthouse-performance/">cheats various scenarios</a> (ex. client-only tags could lead in a slower TTI).</p>
+<p>These library was born to remove the scripts injected in the HTML only if a visitor is a <strong>Bot</strong> or a <strong>Chrome Lighthouse</strong>. This should <strong>speed up</strong> (<strong>blazing fast</strong>) your <em>nuxt-website</em> up to a value of <strong>~95</strong> in <strong>performance</strong> during an <em>Audit</em> because it <a href="https://web.dev/lighthouse-performance/">cheats various scenarios</a> (ex. client-only tags could lead in a slower TTI).</p>
 <blockquote>
 <p>Obviously this could lead in some unexpected behaviors.</p>
 </blockquote>
@@ -35,7 +35,7 @@ So, usually, for a bot or for a human, the website its almost visually the same.
 <hr>
 <h3>Advices</h3>
 <ul>
-<li>before setting up the module, try to <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/disable">Disable JavaScript With Chrome DevTools</a> and navigate;</li>
+<li>before setting up the module, try to <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/disable">Disable JavaScript With Chrome DevTools</a> while navigate your website;</li>
 <li>this plugin is made for working with Bots and it uses only the <code>remove()</code> method of <code>Cheerio</code>;</li>
 <li>if you <code>generate</code> your site it&apos;s not possibile to check the <em>user-agent</em>, so i choose to always prune HTML (you can disable this behavior changing <code>hookGeneratePage</code> to <code>false</code>);</li>
 <li>if you use some <code>client-only</code> components, you should prepare a version that is visually the same as the <code>client-only</code> and use it in the <a href="https://nuxtjs.org/api/components-client-only/">placeholder slot</a>;</li>
@@ -45,7 +45,7 @@ So, usually, for a bot or for a human, the website its almost visually the same.
 <ul>
 <li>It use the <a href="http://hgoebl.github.io/mobile-detect.js/">MobileDetect</a> library to check if <code>.is( &apos;bot&apos; )</code>, <code>.match( options.lighthouseUserAgent )</code> or <code>.match( options.matchUserAgent )</code>;</li>
 <li>Nuxt <a href="https://nuxtjs.org/api/configuration-hooks/">hooks</a>, so the plugin has access to <code>req.headers[ &apos;user-agent&apos; ]</code> only if the project is <strong>running as a server</strong> (ex. <code>nuxt start</code>);</li>
-<li><a href="https://github.com/cheeriojs/cheerio">Cheerio</a>.</li>
+<li>It use the <a href="https://github.com/cheeriojs/cheerio">Cheerio</a>, jQuery for servers, library to prune the html.</li>
 </ul>
 <hr>
 <h4>&#x1F4A1; Lighthouse</h4>
@@ -62,7 +62,7 @@ So, usually, for a bot or for a human, the website its almost visually the same.
 
 </code></pre>
 <h2>Configuration</h2>
-<p><strong><em>N.B. : Shallow merge, not deep merge.</em></strong></p>
+<p><strong><em>N.B. : the config is only shallow merged, not deep merged.</em></strong></p>
 <pre><code class="language-js">
     <span class="hljs-comment">// nuxt.config.js</span>
     <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
