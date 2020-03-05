@@ -68,6 +68,12 @@ ___
 
 ___
 
+#### 💡 Lighthouse
+
+![Lighthouse Audit before](./lighthouse/before.jpg)
+![Lighthouse Audit after](./lighthouse/after.jpg)
+___
+
 ## Setup
 
 1. Add `@luxdamore/nuxt-prune-html` dependency to your project;
