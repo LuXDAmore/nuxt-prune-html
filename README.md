@@ -25,14 +25,14 @@
 [donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
 [donate-href]: https://www.paypal.com/paypalme2/luxdamore
 
-> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performances showing a different HTML for bots (removing all the scripts).
+> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots (removing all the scripts).
 
 ## 💘 Motivation
 
 Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles).
 So, usually, for a bot or for a human, the website its almost visually the same.
 
-These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~ 95** in **performances** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/) (ex. client-only tags could lead in a slower TTI).
+These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~ 95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/) (ex. client-only tags could lead in a slower TTI).
 
 > Obviously this could lead in some unexpected behaviors.
 
