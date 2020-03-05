@@ -32,7 +32,7 @@
 Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles).
 So, usually, for a bot or for a human, the website its almost visually the same.
 
-These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~ 95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/) (ex. client-only tags could lead in a slower TTI).
+These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/) (ex. client-only tags could lead in a slower TTI).
 
 > Obviously this could lead in some unexpected behaviors.
 
