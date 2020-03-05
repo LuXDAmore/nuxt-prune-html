@@ -1,5 +1,5 @@
 <template>
-    <main class="container">
+    <main class="container readme">
         <article
             class="markdown-body"
             v-html="readme"
