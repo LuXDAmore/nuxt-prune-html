@@ -66,16 +66,6 @@
 
                 for( let i = 0; i < links.length; i ++ ) {
 
-                    links[ i ].setAttribute(
-                        'data-cursor-hover',
-                        true,
-                    );
-
-                    links[ i ].setAttribute(
-                        'data-cursor-mix-blend-mode',
-                        'difference',
-                    );
-
                     if( links[ i ].tagName === 'A' ) {
 
                         links[ i ].setAttribute(
