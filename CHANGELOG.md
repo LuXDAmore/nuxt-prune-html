@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.0.2...v1.1.0) (2020-03-19)
+
+
+### Features
+
+* lighthouse before ([65f8312](https://github.com/LuXDAmore/nuxt-prune-html/commit/65f8312fb057c56ec65e0f951ec31bd7a54a1c78))
+
+
+### Bug Fixes
+
+* typo error ([5687131](https://github.com/LuXDAmore/nuxt-prune-html/commit/56871319a4b60d7e5ecd4aa560da9024e70094f3))
+* typo error ([07e52e4](https://github.com/LuXDAmore/nuxt-prune-html/commit/07e52e4e0ceefa46b4838aa0065531655adb8dca))
+
 ### 1.0.1 (2020-03-05)
 
 
