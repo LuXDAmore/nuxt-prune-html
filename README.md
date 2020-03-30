@@ -44,7 +44,7 @@ These library was born to remove the scripts injected in the HTML only if a visi
 
 **Pro:**
 
-- some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need these;
+- some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them;
 - less HTML;
 - fast TTI, fast FCP, fast FMP, *fast ecc*.
 
