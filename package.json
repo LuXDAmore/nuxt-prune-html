@@ -1,6 +1,6 @@
 {
     "name": "@luxdamore/nuxt-prune-html",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots (removing all the scripts)",
     "author": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)",
     "license": "MIT",
