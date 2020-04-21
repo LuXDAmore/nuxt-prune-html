@@ -12,7 +12,18 @@ const BASE_URL = '/';
 config.dev = false;
 config.router.base = BASE_URL;
 config.server.host = 'localhost';
+config.server.port = 3000;
 
+// Url generator for User Agents
+const headers = ua => (
+    ! ua
+    ? {}
+    : {
+        'User-Agent': ua,
+    }
+);
+
+// Tests
 describe(
     'module',
     () => {
@@ -66,7 +77,11 @@ describe(
 
             const html = await get(
                     BASE_URL,
-                    ua
+                    {
+                        headers: headers(
+                            ua
+                        ),
+                    }
                 )
                 , { window } = new JSDOM(
                     html
