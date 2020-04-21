@@ -68,4 +68,10 @@ export default {
     env: {
         package: PACKAGE,
     },
+    /*
+     * Server
+     */
+    server: {
+        host: '0.0.0.0',
+    },
 };
