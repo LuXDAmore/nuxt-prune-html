@@ -34,18 +34,19 @@ So, usually, for a bot or for a human, the website its almost visually the same.
 
 These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/) (ex. client-only tags could lead in a slower TTI).
 
-> Obviously this could lead in some unexpected behaviors.
+> Obviously this could cause some unexpected behaviors.
 
 **Cons:**
 
 - no SPA navigation;
-- no lazy-load for images;
-- no client-side-only.
+- no lazy-load for images (only if [native](https://web.dev/native-lazy-loading/));
+- no `<client-only>` [html](https://nuxtjs.org/api/components-client-only/).
 
 **Pro:**
 
-- some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them;
+- some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. bots doesn't );
 - less HTML;
+- [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
 - fast TTI, fast FCP, fast FMP, *fast ecc*.
 
 Inspired by this [rcfs](https://github.com/nuxt/rfcs/issues/22) and this [issue](https://github.com/nuxt/nuxt.js/issues/2822).
@@ -57,7 +58,7 @@ ___
 - before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website;
 - this plugin is made for working with Bots and it uses only the `remove()` method of `Cheerio`;
 - if you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior changing `hookGeneratePage` to `false`);
-- if you use some `client-only` components, you should prepare a version that is visually the same as the `client-only` and use it in the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
+- if you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
 - you can check the website as a GoogleBot, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
 
 ### Related things you should know
@@ -114,10 +115,10 @@ ___
             ignoreBotOrLighthouse: false, // Remove selectors in any case, not depending on Bot or Lighthouse
             isBot: true, // Remove selectors if is a bot
             isLighthouse: true, // Remove selectors if match the Lighthouse UserAgent
-            matchUserAgent: null, // Remove selectors if this userAgent is matched
-            hookRenderRoute: true, // Activate in `hook:render:route`
-            hookGeneratePage: true, // Activate in `hook:generate:page`
-            lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent
+            matchUserAgent: null, // Remove selectors if this userAgent is matched, either as String or RegExp (a string will be converted to a case-insensitive RegExp by Cheerio)
+            hookRenderRoute: true, // Activate the prune during the `hook:render:route`
+            hookGeneratePage: true, // Activate the prune during the `hook:generate:page`
+            lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp by Cheerio)
         },
 
     };
@@ -150,7 +151,8 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 #### 💸 Are you feeling generous today?  :)
 
-Do you want to share a beer? We can be good friends.. __[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
+Do you want to share a beer? We can be good friends..
+__[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
 
 > _It's always a good day to be magnanimous - cit_
 
@@ -159,11 +161,3 @@ Do you want to share a beer? We can be good friends.. __[Paypal](https://www.pay
 [![Contacts](https://img.shields.io/badge/email-Contact%20me-success)](https://lucaiaconelli.it)
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
-
-___
-
-##### ✔ TODO
-
-> Just asking myself if i should do more.
-
-- Add more tests.

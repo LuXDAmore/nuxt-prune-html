@@ -1,4 +1,5 @@
 # TODO
 
-- Spostare `dir` in file?
-- Rinominare `dir` in `subdir`?
+> Just asking myself if i should do more.
+
+- Add more tests.
