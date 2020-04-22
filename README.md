@@ -30,9 +30,9 @@
 ## 💘 Motivation
 
 Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles).
-So, usually, for a bot or for a human, the website its almost visually the same.
+So, usually, for a bot or for a human, the website its almost visually the same without Javascript.
 
-These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/) (ex. client-only tags could lead in a slower TTI).
+These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/).
 
 > Obviously this could cause some unexpected behaviors.
 
@@ -44,10 +44,10 @@ These library was born to remove the scripts injected in the HTML only if a visi
 
 **Pro:**
 
-- some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. bots doesn't );
+- some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. Bots doesn't need `SPA navigation`, `client-only` tags could lead in a slower TTI);
 - less HTML;
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
-- fast TTI, fast FCP, fast FMP, *fast ecc*.
+- fast TTI, fast FCP, fast FMP, *fast all*.
 
 Inspired by this [rcfs](https://github.com/nuxt/rfcs/issues/22) and this [issue](https://github.com/nuxt/nuxt.js/issues/2822).
 
@@ -55,17 +55,17 @@ ___
 
 ### Advices
 
-- before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website;
-- this plugin is made for working with Bots and it uses only the `remove()` method of `Cheerio`;
-- if you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior changing `hookGeneratePage` to `false`);
-- if you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
-- you can check the website as a GoogleBot, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
+- Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear to a Bot (with this module activated)**;
+- If you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior by setting the `hookGeneratePage` configuration value to `false`);
+- If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
+- This plugin was thought for Bots and uses only the `remove()` method of `Cheerio`;
+- You can check the website as a GoogleBot, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
 
 ### Related things you should know
 
 - It use the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library to check if `.is( 'bot' )`, `.match( options.lighthouseUserAgent )` or `.match( options.matchUserAgent )`;
 - Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), so the plugin has access to `req.headers[ 'user-agent' ]` only if the project is **running as a server** (ex. `nuxt start`);
-- It use the [Cheerio](https://github.com/cheeriojs/cheerio), jQuery for servers, library to prune the html.
+- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to prune the html.
 
 ___
 
