@@ -14,8 +14,8 @@
 </blockquote>
 <h2>&#x1F498; Motivation</h2>
 <p>Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles).
-So, usually, for a bot or for a human, the website its almost visually the same.</p>
-<p>These library was born to remove the scripts injected in the HTML only if a visitor is a <strong>Bot</strong> or a <strong>Chrome Lighthouse</strong>. This should <strong>speed up</strong> (<strong>blazing fast</strong>) your <em>nuxt-website</em> up to a value of <strong>~95</strong> in <strong>performance</strong> during an <em>Audit</em> because it <a href="https://web.dev/lighthouse-performance/">cheats various scenarios</a> (ex. client-only tags could lead in a slower TTI).</p>
+So, usually, for a bot or for a human, the website its almost visually the same without Javascript.</p>
+<p>These library was born to remove the scripts injected in the HTML only if a visitor is a <strong>Bot</strong> or a <strong>Chrome Lighthouse</strong>. This should <strong>speed up</strong> (<strong>blazing fast</strong>) your <em>nuxt-website</em> up to a value of <strong>~95</strong> in <strong>performance</strong> during an <em>Audit</em> because it <a href="https://web.dev/lighthouse-performance/">cheats various scenarios</a>.</p>
 <blockquote>
 <p>Obviously this could cause some unexpected behaviors.</p>
 </blockquote>
@@ -27,26 +27,26 @@ So, usually, for a bot or for a human, the website its almost visually the same.
 </ul>
 <p><strong>Pro:</strong></p>
 <ul>
-<li>some of these features aren&apos;t &quot;used by&quot; a Bot or a Lighthouse Audit, so you don&apos;t really need them (ex. bots doesn&apos;t );</li>
+<li>some of these features aren&apos;t &quot;used by&quot; a Bot or a Lighthouse Audit, so you don&apos;t really need them (ex. Bots doesn&apos;t need <code>SPA navigation</code>, <code>client-only</code> tags could lead in a slower TTI);</li>
 <li>less HTML;</li>
 <li><a href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights</a>, <a href="https://web.dev/measure/">Measure</a> and <a href="https://developers.google.com/web/tools/lighthouse">Lighthouse Audit in Chrome</a> are already triggered by the plugin without the needing of change any value;</li>
-<li>fast TTI, fast FCP, fast FMP, <em>fast ecc</em>.</li>
+<li>fast TTI, fast FCP, fast FMP, <em>fast all</em>.</li>
 </ul>
 <p>Inspired by this <a href="https://github.com/nuxt/rfcs/issues/22">rcfs</a> and this <a href="https://github.com/nuxt/nuxt.js/issues/2822">issue</a>.</p>
 <hr>
 <h3>Advices</h3>
 <ul>
-<li>before setting up the module, try to <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/disable">Disable JavaScript With Chrome DevTools</a> while navigate your website;</li>
-<li>this plugin is made for working with Bots and it uses only the <code>remove()</code> method of <code>Cheerio</code>;</li>
-<li>if you <code>generate</code> your site it&apos;s not possibile to check the <em>user-agent</em>, so i choose to always prune HTML (you can disable this behavior changing <code>hookGeneratePage</code> to <code>false</code>);</li>
-<li>if you use some <code>&lt;client-only&gt;</code> components, you should prepare a version that is visually the same with the <a href="https://nuxtjs.org/api/components-client-only/">placeholder slot</a>;</li>
-<li>you can check the website as a GoogleBot, following <a href="https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent">this guide</a>.</li>
+<li>Before setting up the module, try to <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/disable">Disable JavaScript With Chrome DevTools</a> while navigate your website, <strong>this is how your website appear to a Bot (with this module activated)</strong>;</li>
+<li>If you <code>generate</code> your site it&apos;s not possibile to check the <em>user-agent</em>, so i choose to always prune HTML (you can disable this behavior by setting the <code>hookGeneratePage</code> configuration value to <code>false</code>);</li>
+<li>If you use some <code>&lt;client-only&gt;</code> components, you should prepare a version that is visually the same with the <a href="https://nuxtjs.org/api/components-client-only/">placeholder slot</a>;</li>
+<li>This plugin was thought for Bots and uses only the <code>remove()</code> method of <code>Cheerio</code>;</li>
+<li>You can check the website as a GoogleBot, following <a href="https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent">this guide</a>.</li>
 </ul>
 <h3>Related things you should know</h3>
 <ul>
 <li>It use the <a href="http://hgoebl.github.io/mobile-detect.js/">MobileDetect</a> library to check if <code>.is( &apos;bot&apos; )</code>, <code>.match( options.lighthouseUserAgent )</code> or <code>.match( options.matchUserAgent )</code>;</li>
 <li>Nuxt <a href="https://nuxtjs.org/api/configuration-hooks/">hooks</a>, so the plugin has access to <code>req.headers[ &apos;user-agent&apos; ]</code> only if the project is <strong>running as a server</strong> (ex. <code>nuxt start</code>);</li>
-<li>It use the <a href="https://github.com/cheeriojs/cheerio">Cheerio</a>, jQuery for servers, library to prune the html.</li>
+<li>It use <a href="https://github.com/cheeriojs/cheerio">Cheerio</a>, <em>jQuery for servers</em>, library to prune the html.</li>
 </ul>
 <hr>
 <h4>&#x1F4A1; Lighthouse</h4>
