@@ -9,13 +9,20 @@
         "nuxt-module",
         "vuejs",
         "nuxtjs",
+        "nuxt",
         "modules",
         "performance",
         "build",
         "cheerio",
         "html",
         "prune",
-        "bot"
+        "bot",
+        "lighthouse",
+        "lighthouse-audit",
+        "audit",
+        "pagespeed-insight",
+        "dynamic-rendering",
+        "measure"
     ],
     "contributors": [
         {
@@ -79,7 +86,7 @@
         "eslint-plugin-standard": "latest",
         "eslint-plugin-unicorn": "^18.0.1",
         "eslint-plugin-vue": "^6.1.2",
-        "highlight.js": "^9.18.1",
+        "highlight.js": "^10.0.0",
         "husky": "^4.0.1",
         "jest": "^25.1.0",
         "jsdom": "^16.0.1",
