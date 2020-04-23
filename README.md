@@ -32,9 +32,13 @@
 Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles).
 So, usually, for a bot or for a human, the website its almost visually the same without Javascript.
 
-These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a **Chrome Lighthouse**. This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/).
+These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a "**Chrome Lighthouse**". This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/).
 
 > Obviously this could cause some unexpected behaviors.
+
+### Pro et contra
+
+**_N.B. : Valid for Bots, PageSpeed Insights, Google Measure and Lighthouse Audits._**
 
 **Cons:**
 
@@ -115,10 +119,10 @@ ___
             ignoreBotOrLighthouse: false, // Remove selectors in any case, not depending on Bot or Lighthouse
             isBot: true, // Remove selectors if is a bot
             isLighthouse: true, // Remove selectors if match the Lighthouse UserAgent
-            matchUserAgent: null, // Remove selectors if this userAgent is matched, either as String or RegExp (a string will be converted to a case-insensitive RegExp by Cheerio)
+            matchUserAgent: null, // Remove selectors if this userAgent is matched, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
             hookRenderRoute: true, // Activate the prune during the `hook:render:route`
             hookGeneratePage: true, // Activate the prune during the `hook:generate:page`
-            lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp by Cheerio)
+            lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
         },
 
     };
