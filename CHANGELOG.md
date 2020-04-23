@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.1.3...v1.2.0) (2020-04-23)
+
+
+### Features
+
+* new highlightjs ([4dfc198](https://github.com/LuXDAmore/nuxt-prune-html/commit/4dfc198b779b497a80ce3e0147cee76dc3caff3a))
+
 ### [1.1.2](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.1.1...v1.1.2) (2020-04-21)
 
 
