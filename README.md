@@ -25,7 +25,7 @@
 [donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
 [donate-href]: https://www.paypal.com/paypalme2/luxdamore
 
-> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots (removing all the scripts).
+> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots (removing all the scripts with dynamic rendering).
 
 ## 💘 Motivation
 
@@ -38,7 +38,7 @@ These library was born to remove the scripts injected in the HTML only if a visi
 
 ### Pro et contra
 
-**_N.B. : Valid for Bots, PageSpeed Insights, Google Measure and Lighthouse Audits._**
+**_N.B. : Valid for Bots, PageSpeed Insights, Google Measure and Lighthouse Audits. This is known as [Dynamic Rendering](https://developers.google.com/search/docs/guides/dynamic-rendering)_**
 
 **Cons:**
 
