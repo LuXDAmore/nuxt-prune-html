@@ -1,6 +1,7 @@
 <template>
     <main class="container readme">
         <article
+            v-if="readme"
             class="markdown-body"
             v-html="readme"
         />
