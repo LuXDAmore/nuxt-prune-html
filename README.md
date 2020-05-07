@@ -25,7 +25,7 @@
 [donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
 [donate-href]: https://www.paypal.com/paypalme2/luxdamore
 
-> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots (removing all the scripts with dynamic rendering).
+> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots by removing all the scripts with dynamic rendering.
 
 ## 💘 Motivation
 
@@ -43,13 +43,14 @@ These library was born to remove the scripts injected in the HTML only if a visi
 **Cons:**
 
 - no SPA navigation;
-- no lazy-load for images (only if [native](https://web.dev/native-lazy-loading/));
+- no lazy-load for images (only if [native](https://web.dev/native-lazy-loading/), or with a custom `script` or with `selectorToKeep` );
 - no `<client-only>` [html](https://nuxtjs.org/api/components-client-only/).
 
 **Pro:**
 
 - some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. Bots doesn't need `SPA navigation`, `client-only` tags could lead in a slower TTI);
 - less HTML;
+- BOTS only have the Javascript they need;
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
 - fast TTI, fast FCP, fast FMP, *fast all*.
 
@@ -107,13 +108,14 @@ ___
             hideErrorsInConsole: false,
             hideGenericMessagesInConsole: false, // Disabled in production
             enabled: false, // Disabled in dev-mode due to the hot reload (is client-side)
-            // Css selectors to prune
-            selectors: [
+            selectors: [ // Css selectors to prune
                 'link[rel="preload"][as="script"]',
                 'script:not([type="application/ld+json"])',
             ],
-            // It use Cheerio under the hood, so this is the config passed in the cheerio.load() method
-            cheerio: {
+            selectorToKeep: null, // Disallow pruning of scripts with this class, N.B.: this selector will be appended to every selectors, `ex. script:not([type="application/ld+json"]):not(__VALUE__)`
+            script: [], // Inject custom scripts only for matched UA (BOTS-only)
+            link: [], // Inject custom links only for matched UA (BOTS-only)
+            cheerio: { // It use Cheerio under the hood, so this is the config passed in the cheerio.load() method
                 xmlMode: false,
             },
             ignoreBotOrLighthouse: false, // Remove selectors in any case, not depending on Bot or Lighthouse
@@ -125,6 +127,32 @@ ___
             lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
         },
 
+    };
+
+```
+
+With `link` and `script` it's possibile to add one or more objects ex.:
+
+```javascript
+
+    export default {
+        pruneHtml: {
+            script: [
+                {
+                    src: '/my-custom-lazy-load-for-bots.js',
+                    lazy: true,
+                    defer: true,
+                },
+            ],
+            link: [
+                {
+                    src: '/my-custom-lazy-load-for-bots.js',
+                    rel: 'preload',
+                    as: 'script',
+                    position: 'phead', // Default value is 'body' ->Other allowed values are: 'phead', 'head' and 'pbody'
+                },
+            ],
+        },
     };
 
 ```

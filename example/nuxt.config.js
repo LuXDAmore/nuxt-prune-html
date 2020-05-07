@@ -2,13 +2,24 @@ import { resolve } from 'path';
 import * as PACKAGE from '../package.json';
 
 const meta = [
-    {
-        once: true,
-        hid: 'description',
-        name: 'description',
-        content: PACKAGE.description,
-    },
-];
+        {
+            once: true,
+            hid: 'description',
+            name: 'description',
+            content: PACKAGE.description,
+        },
+    ]
+    , script = [
+        {
+            once: true,
+            hid: 'keep-me',
+            src: '/keep-me.js',
+            class: 'nuxt-prune--keep',
+            async: true,
+            defer: true,
+        },
+    ]
+;
 
 export default {
     modern: true,
@@ -32,6 +43,7 @@ export default {
         },
         title: PACKAGE.name,
         meta,
+        script,
     },
     /*
      * Modules

@@ -96,11 +96,11 @@ describe(
         };
 
         describe(
-            'website',
+            'human',
             () => {
 
                 test(
-                    'scripts',
+                    'preload-scripts',
                     async() => {
 
                         const elements = await getElements(
@@ -139,13 +139,13 @@ describe(
         );
 
         describe(
-            'is-bot',
+            'bot',
             () => {
 
                 const USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
 
                 test(
-                    'scripts',
+                    'preload-scripts',
                     async() => {
 
                         const elements = await getElements(
