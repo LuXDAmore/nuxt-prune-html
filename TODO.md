@@ -2,4 +2,5 @@
 
 > Just asking myself if i should do more.
 
+- Preload and append to body a script for html after pruning;
 - Add more tests.
