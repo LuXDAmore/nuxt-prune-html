@@ -60,7 +60,7 @@
     ],
     "dependencies": {
         "cheerio": "^1.0.0-rc.3",
-        "consola": "^2.11.0",
+        "consola": "^2.12.1",
         "mobile-detect": "^1.4.4"
     },
     "devDependencies": {
@@ -85,17 +85,17 @@
         "eslint-plugin-prettier": "^3.1.2",
         "eslint-plugin-promise": "latest",
         "eslint-plugin-standard": "latest",
-        "eslint-plugin-unicorn": "^18.0.1",
+        "eslint-plugin-unicorn": "^19.0.1",
         "eslint-plugin-vue": "^6.1.2",
-        "highlight.js": "^10.0.0",
+        "highlight.js": "^10.0.2",
         "husky": "^4.0.1",
         "jest": "^25.1.0",
         "jsdom": "^16.0.1",
-        "markdownlint": "^0.20.1",
+        "markdownlint": "^0.20.2",
         "modern-normalize": "^0.6.0",
         "nuxt": "^2.11.0",
         "prettier": "latest",
         "prettier-eslint": "latest",
-        "standard-version": "^7.1.0"
+        "standard-version": "^8.0.0"
     }
 }
