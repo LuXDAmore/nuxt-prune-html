@@ -2,5 +2,5 @@
 
 > Just asking myself if i should do more.
 
-- Preload and append to body a script for html after pruning or config class like '.nuxt-prune--keep';
+- Better `script` and `link`, should not concatenate strings and check if the html is valid;
 - Add more tests.
