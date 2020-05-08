@@ -149,7 +149,7 @@ With `link` and `script` it's possibile to add one or more objects ex.:
                     src: '/my-custom-lazy-load-for-bots.js',
                     rel: 'preload',
                     as: 'script',
-                    position: 'phead', // Default value is 'body' ->Other allowed values are: 'phead', 'head' and 'pbody'
+                    position: 'phead', // Default value is 'body' --> Other allowed values are: 'phead', 'head' and 'pbody'
                 },
             ],
         },
