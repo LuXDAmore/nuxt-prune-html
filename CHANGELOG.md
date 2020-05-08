@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.2.1...v1.3.0) (2020-05-08)
+
+
+### Features
+
+* new options script, link and selectorToKeep ([bed7cd1](https://github.com/LuXDAmore/nuxt-prune-html/commit/bed7cd161764b7da4624d1166c36c087c667b57b))
+
+
+### Bug Fixes
+
+* check read exist ([d48d3ec](https://github.com/LuXDAmore/nuxt-prune-html/commit/d48d3ecaec8d1f695ecc0c1d36fe445390f29b61))
+
 ## [1.2.0](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.1.3...v1.2.0) (2020-04-23)
 
 
