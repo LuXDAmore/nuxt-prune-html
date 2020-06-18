@@ -38,7 +38,7 @@ config.pruneHtml = {
             position: 'phead',
         },
     ],
-    headerOverrideName: 'custom-name',
+    headerName: 'custom-name',
 };
 
 // Url generator for User Agents
