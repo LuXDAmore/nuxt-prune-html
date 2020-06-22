@@ -43,6 +43,7 @@
     "scripts": {
         "dev": "nuxt -o example",
         "build": "nuxt build example",
+        "cheerio": "node utils/cheerio.js",
         "prestart": "yarn build",
         "start": "nuxt start example",
         "generate": "nuxt generate example",
