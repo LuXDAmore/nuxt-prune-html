@@ -31,7 +31,14 @@
     export default {
         name: 'homepage',
         computed: {
-            readme: () => readme,
+            readme() {
+
+                return readme.replaceAll(
+                    'example/static/',
+                    ''
+                );
+
+            },
         },
         mounted() {
 

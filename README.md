@@ -76,8 +76,8 @@ ___
 
 #### 💡 Lighthouse
 
-![Lighthouse Audit before](./lighthouse/before.jpg)
-![Lighthouse Audit after](./lighthouse/after.jpg)
+![Lighthouse Audit before](./example/static/lighthouse/before.jpg)
+![Lighthouse Audit after](./example/static/lighthouse/after.jpg)
 ___
 
 ## Setup
