@@ -1,0 +1,10 @@
+/* TEAM */
+Full stack developer: Luca Iaconelli
+Twitter: @luxdamore
+Instagram: @luxdamore
+From: Faenza, Italia
+
+/* SITE */
+Language: Italian
+Doctype: HTML5
+IDE: Visual Studio Code
