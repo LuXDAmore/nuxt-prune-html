@@ -64,10 +64,9 @@
         "mobile-detect": "^1.4.4"
     },
     "devDependencies": {
-        "@babel/runtime-corejs3": "^7.10.3",
-        "core-js": "^3.6.5",
         "@babel/core": "^7.8.7",
         "@babel/preset-env": "^7.8.7",
+        "@babel/runtime-corejs3": "^7.10.3",
         "@commitlint/cli": "^8.3.4",
         "@commitlint/config-conventional": "^8.3.4",
         "@nuxtjs/eslint-config": "latest",
@@ -77,6 +76,7 @@
         "babel-eslint": "latest",
         "babel-jest": "^25.1.0",
         "codecov": "^3.6.2",
+        "core-js": "^3.6.5",
         "eslint": "^6.8.0",
         "eslint-config-standard": "latest",
         "eslint-loader": "^4.0.2",
@@ -95,7 +95,7 @@
         "jsdom": "^16.0.1",
         "markdownlint": "^0.20.2",
         "modern-normalize": "^0.6.0",
-        "nuxt": "^2.11.0",
+        "nuxt": "2.13.0",
         "prettier": "latest",
         "prettier-eslint": "latest",
         "standard-version": "^8.0.0"
