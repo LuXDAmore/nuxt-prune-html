@@ -163,7 +163,8 @@ ___
 
 1. Clone this repository;
 2. Install dependencies using `yarn install` or `npm install`;
-3. Start development server using `yarn dev` or `npm run dev`.
+3. Start development server using `yarn dev` or `npm run dev`;
+4. Build *Github Pages* using `yarn generate` or `npm run generate` (the content is automatically generated into the `/docs` folder).
 
 ## 🐞 Issues
 
