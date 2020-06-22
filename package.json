@@ -43,6 +43,8 @@
     "scripts": {
         "dev": "nuxt -o example",
         "build": "nuxt build example",
+        "preexport": "yarn build",
+        "export": "nuxt export example",
         "cheerio": "node utils/cheerio.js",
         "prestart": "yarn build",
         "start": "nuxt start example",
