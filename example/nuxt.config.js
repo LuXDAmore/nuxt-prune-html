@@ -50,10 +50,11 @@ export default {
      */
     modules: [
         '@nuxtjs/markdownit',
-        resolve(
-            __dirname,
-            '../lib/module'
-        ),
+        {
+            handler: require(
+                '../'
+            ).default,
+        },
     ],
     /*
      * Router
@@ -61,7 +62,7 @@ export default {
     router: {
         base: (
             process.env.NODE_ENV === 'production'
-            ? '/nuxt-prune-html/'
+            ? `${ PACKAGE.homepage }/`
             : '/'
         ),
     },
@@ -75,15 +76,81 @@ export default {
         ),
     },
     /*
-     * Env
+     ** Build configuration
      */
-    env: {
-        package: PACKAGE,
-    },
-    /*
-     * Server
-     */
-    server: {
-        host: '0.0.0.0',
+    build: {
+        loaders: {
+            vue: {
+                compilerOptions: {
+                    preserveWhitespace: false,
+                    whitespace: 'condense',
+                },
+            },
+        },
+        babel: {
+            presets: (
+                { isServer },
+            ) => [
+                [
+                    require.resolve(
+                        '@nuxt/babel-preset-app',
+                    ),
+                    {
+                        buildTarget: isServer ? 'server' : 'client',
+                        corejs: {
+                            version: 3,
+                        },
+                    },
+                ],
+            ],
+        },
+        /*
+         ** Minifier
+         */
+        html: {
+            minify: {
+                collapseBooleanAttributes: true,
+                decodeEntities: true,
+                minifyCSS: true,
+                minifyJS: true,
+                processConditionalComments: true,
+                collapseInlineTagWhitespace: true,
+                removeOptionalTags: true,
+                removeAttributeQuotes: true,
+                removeEmptyAttributes: true,
+                removeRedundantAttributes: true,
+                trimCustomFragments: true,
+                useShortDoctype: true,
+                collapseWhitespace: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                removeComments: true,
+                continueOnParseError: true,
+            },
+        },
+        /*
+         ** Run lint on save
+         */
+        extend(
+            config,
+            {
+                isDev,
+                isClient,
+            },
+        ) {
+
+            /*
+             ** ESLint loaded
+             */
+            isDev && isClient && config.module.rules.push(
+                {
+                    enforce: 'pre',
+                    test: /\.(js|vue)$/,
+                    loader: 'eslint-loader',
+                    exclude: /(node_modules)/,
+                },
+            );
+
+        },
     },
 };
