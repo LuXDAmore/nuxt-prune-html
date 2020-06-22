@@ -9,6 +9,22 @@ const meta = [
             content: PACKAGE.description,
         },
     ]
+    , link = [
+        {
+            once: true,
+            hid: 'favicon',
+            rel: 'shortcut icon',
+            type: 'image/x-icon',
+            href: '/favicon.ico',
+        },
+        {
+            once: true,
+            hid: 'humans',
+            rel: 'author',
+            type: 'text/plain',
+            href: '/humans.txt',
+        },
+    ]
     , script = [
         {
             once: true,
@@ -43,6 +59,7 @@ export default {
         },
         title: PACKAGE.name,
         meta,
+        link,
         script,
     },
     /*
