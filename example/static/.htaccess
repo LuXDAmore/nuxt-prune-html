@@ -1,0 +1,121 @@
+# SP BEGIN php handler
+<IfModule mod_fcgid.c>
+    AddHandler fcgid-script .php .php5 .php7 .phtml
+    FcgidWrapper /usr/local/cpanel/cgi-sys/sp-ea-php74 .php
+    FcgidWrapper /usr/local/cpanel/cgi-sys/sp-ea-php74 .php5
+    FcgidWrapper /usr/local/cpanel/cgi-sys/sp-ea-php74 .php7
+    FcgidWrapper /usr/local/cpanel/cgi-sys/sp-ea-php74 .phtml
+</IfModule>
+# SP END php handler
+
+# Validation + force https
+<IfModule mod_rewrite.c>
+
+	RewriteEngine On
+
+	# Force HTTPS
+	RewriteCond %{HTTPS} !on
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+    # Rules to correctly serve gzip compressed CSS and JS files.
+    # Requires both mod_rewrite and mod_headers to be enabled.
+    <IfModule mod_headers.c>
+
+        # Serve brotli compressed CSS files if they exist and the client accepts gzip.
+        RewriteCond %{HTTP:Accept-encoding} br
+        RewriteCond %{REQUEST_FILENAME}\.br -s
+        RewriteRule ^(.*)\.css $1\.css\.br [QSA]
+
+        # Serve gzip compressed CSS files if they exist and the client accepts gzip.
+        RewriteCond %{HTTP:Accept-encoding} gzip
+        RewriteCond %{REQUEST_FILENAME}\.gz -s
+        RewriteRule ^(.*)\.css $1\.css\.gz [QSA]
+
+        # Serve brotli compressed JS files if they exist and the client accepts gzip.
+        RewriteCond %{HTTP:Accept-encoding} br
+        RewriteCond %{REQUEST_FILENAME}\.br -s
+        RewriteRule ^(.*)\.js$ $1\.js\.br [QSA]
+
+        # Serve gzip compressed JS files if they exist and the client accepts gzip.
+        RewriteCond %{HTTP:Accept-encoding} gzip
+        RewriteCond %{REQUEST_FILENAME}\.gz -s
+        RewriteRule ^(.*)\.js$ $1\.js\.gz [QSA]
+
+        # Serve correct content types, and prevent mod_deflate double gzip.
+        RewriteRule \.css\.gz$ - [T=text/css,E=no-gzip:1]
+        RewriteRule \.js\.gz$ - [T=text/javascript,E=no-gzip:1]
+        RewriteRule \.css\.br$ - [T=text/css,E=no-gzip:1]
+        RewriteRule \.js\.br$ - [T=text/javascript,E=no-gzip:1]
+
+        <FilesMatch "(\.js\.gz|\.css\.gz)$">
+            # Serve correct encoding type.
+            Header set Content-Encoding gzip
+            # Force proxies to cache gzipped & non-gzipped css/js files separately.
+            Header append Vary Accept-Encoding
+        </FilesMatch>
+
+        <FilesMatch "(\.js\.br|\.css\.br)$">
+            # Serve correct encoding type.
+            Header set Content-Encoding br
+            # Force proxies to cache gzipped & non-gzipped css/js files separately.
+            Header append Vary Accept-Encoding
+        </FilesMatch>
+
+    </IfModule>
+
+</IfModule>
+
+# Compression BEGIN
+<IfModule mod_deflate.c>
+
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+
+</IfModule>
+# Compression END
+
+# Service worker BEGIN
+<IfModule mod_headers.c>
+
+    # YEAR
+    <FilesMatch "\.(xml|json|woff||woff2|ico|svg|gif|jpg|jpeg|png|flv|pdf)$">
+        Header set Cache-Control "max-age=29030400"
+    </FilesMatch>
+
+    # WEEK
+    <FilesMatch "\.(br|gz|js|css|swf)$">
+        Header set Cache-Control "max-age=604800"
+    </FilesMatch>
+
+    # 60 MIN
+    <FilesMatch "\.(html|htm|txt)$">
+        Header set Cache-Control "max-age=3000"
+    </FilesMatch>
+
+    # Service worker
+    <FilesMatch "\sw\.js$">
+        Header set Cache-Control "max-age=0, no-cache"
+    </FilesMatch>
+
+</IfModule>
+# Service worker END
