@@ -51,7 +51,8 @@ describe(
 
                 await nuxt.close();
 
-            }
+            },
+            60000
         );
 
         test(
@@ -68,7 +69,8 @@ describe(
                     'Prune HTML'
                 );
 
-            }
+            },
+            60000
         );
 
         const getElements = async(
@@ -115,7 +117,8 @@ describe(
                             0
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -133,7 +136,8 @@ describe(
                             0
                         );
 
-                    }
+                    },
+                    60000
                 );
 
             }
@@ -161,7 +165,8 @@ describe(
                             0
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -180,7 +185,8 @@ describe(
                             0
                         );
 
-                    }
+                    },
+                    60000
                 );
 
             }

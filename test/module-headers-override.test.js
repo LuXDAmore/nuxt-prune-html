@@ -78,7 +78,8 @@ describe(
 
                 await nuxt.close();
 
-            }
+            },
+            60000
         );
 
         const getElements = async(
@@ -145,7 +146,8 @@ describe(
                             0
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -163,7 +165,8 @@ describe(
                             1
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -181,7 +184,8 @@ describe(
                             1
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -215,7 +219,8 @@ describe(
                             true
                         );
 
-                    }
+                    },
+                    60000
                 );
 
             }
@@ -243,7 +248,8 @@ describe(
                             1
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -262,7 +268,8 @@ describe(
                             4
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -281,7 +288,8 @@ describe(
                             1
                         );
 
-                    }
+                    },
+                    60000
                 );
 
                 test(
@@ -317,7 +325,8 @@ describe(
                             true
                         );
 
-                    }
+                    },
+                    60000
                 );
 
             }
