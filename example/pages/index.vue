@@ -17,6 +17,12 @@
     // Readme
     import readme from '~/../README.md';
 
+    const markdown = readme.split(
+        './example/static/'
+    ).join(
+        ''
+    );
+
     // Highlight config
     hljs.registerLanguage(
         'bash',
@@ -31,14 +37,7 @@
     export default {
         name: 'homepage',
         computed: {
-            readme() {
-
-                return readme.replaceAll(
-                    'example/static/',
-                    ''
-                );
-
-            },
+            readme: () => markdown,
         },
         mounted() {
 
