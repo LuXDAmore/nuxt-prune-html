@@ -72,6 +72,7 @@
         "@nuxtjs/eslint-config": "latest",
         "@nuxtjs/markdownit": "^1.2.9",
         "@nuxtjs/module-test-utils": "latest",
+        "@nuxtjs/sitemap": "^2.3.2",
         "@vue/eslint-config-prettier": "latest",
         "babel-eslint": "latest",
         "babel-jest": "^25.1.0",
@@ -96,6 +97,7 @@
         "markdownlint": "^0.20.2",
         "modern-normalize": "^0.6.0",
         "nuxt": "2.13.0",
+        "nuxt-compress": "^2.0.0",
         "prettier": "latest",
         "prettier-eslint": "latest",
         "standard-version": "^8.0.0"

@@ -8,6 +8,14 @@ const meta = [
             name: 'description',
             content: PACKAGE.description,
         },
+        {
+            once: true,
+            hid: 'keywords',
+            name: 'keywords',
+            content: PACKAGE.keywords.join(
+                ','
+            ),
+        },
     ]
     , link = [
         {
@@ -29,7 +37,7 @@ const meta = [
         {
             once: true,
             hid: 'keep-me',
-            src: '/keep-me.js',
+            src: '/scripts/keep-me.js',
             class: 'nuxt-prune--keep',
             async: true,
             defer: true,
@@ -73,6 +81,14 @@ export default {
             ).default,
         },
     ],
+    buildModules: [
+        'nuxt-compress',
+        '@nuxtjs/sitemap',
+    ],
+    sitemap: {
+        hostname: PACKAGE.homepage,
+        gzip: true,
+    },
     /*
      * Router
      */
