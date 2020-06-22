@@ -11,8 +11,6 @@ const BASE_URL = '/';
 
 config.dev = false;
 config.router.base = BASE_URL;
-config.server.host = 'localhost';
-config.server.port = 3000;
 
 // New features
 config.pruneHtml = {
