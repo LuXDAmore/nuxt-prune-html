@@ -1,7 +1,10 @@
+// Test utils
 import {
     setup,
     get,
 } from '@nuxtjs/module-test-utils';
+
+// Dom utils
 import { JSDOM } from 'jsdom';
 
 // Nuxt config
