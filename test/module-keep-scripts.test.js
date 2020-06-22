@@ -209,7 +209,7 @@ describe(
                         );
 
                         expect(
-                            elements.body.lastChild.tagName !== 'SCRIPT'
+                            elements.body.lastChild.tagName === 'SCRIPT'
                         ).toEqual(
                             true
                         );
