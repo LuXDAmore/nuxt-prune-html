@@ -125,6 +125,7 @@ ___
             hookRenderRoute: true, // Activate the prune during the `hook:render:route`
             hookGeneratePage: true, // Activate the prune during the `hook:generate:page`
             lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
+            headerName: 'user-agent', // Value of a custom header name passed from a Lambda Edge function, or similar
         },
 
     };
@@ -149,7 +150,7 @@ With `link` and `script` it's possibile to add one or more objects ex.:
                     src: '/my-custom-lazy-load-for-bots.js',
                     rel: 'preload',
                     as: 'script',
-                    position: 'phead', // Default value is 'body' ->Other allowed values are: 'phead', 'head' and 'pbody'
+                    position: 'phead', // Default value is 'body' --> Other allowed values are: 'phead', 'head' and 'pbody'
                 },
             ],
         },
