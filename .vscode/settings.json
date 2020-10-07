@@ -9,9 +9,6 @@
         ]
     },
     // Vue
-    "vetur.format.styleInitialIndent": true,
-    "vetur.format.defaultFormatter.js": "prettier-eslint",
-    "vetur.format.defaultFormatter.ts": "prettier-tslint",
     "prettier.singleQuote": true,
     "prettier.tabWidth": 4,
     "prettier.trailingComma": "all",
