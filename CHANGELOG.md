@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.4.0...v1.4.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* linting ([c84dd55](https://github.com/LuXDAmore/nuxt-prune-html/commit/c84dd5517b5bd4a7e9c79f3d420e6de2e7eb26b4))
+* test timing ([6fc5c23](https://github.com/LuXDAmore/nuxt-prune-html/commit/6fc5c239a233227e4095ee4027f6baca3e2e0312))
+* vscode extensions ([010e781](https://github.com/LuXDAmore/nuxt-prune-html/commit/010e7818c82a67fb4c0a60ca8cb5f1a0032945b5))
+
 ## [1.4.0](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.3.1...v1.4.0) (2020-06-22)
 
 
