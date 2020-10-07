@@ -43,7 +43,7 @@ describe(
                 );
 
             },
-            60000
+            90000
         );
 
         afterAll(
@@ -52,7 +52,7 @@ describe(
                 await nuxt.close();
 
             },
-            60000
+            90000
         );
 
         test(
@@ -70,7 +70,7 @@ describe(
                 );
 
             },
-            60000
+            90000
         );
 
         const getElements = async(
@@ -118,7 +118,7 @@ describe(
                         );
 
                     },
-                    60000
+                    90000
                 );
 
                 test(
@@ -137,7 +137,7 @@ describe(
                         );
 
                     },
-                    60000
+                    90000
                 );
 
             }
@@ -166,7 +166,7 @@ describe(
                         );
 
                     },
-                    60000
+                    90000
                 );
 
                 test(
@@ -186,7 +186,7 @@ describe(
                         );
 
                     },
-                    60000
+                    90000
                 );
 
             }

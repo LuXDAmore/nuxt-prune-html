@@ -46,12 +46,8 @@ const meta = [
 ;
 
 export default {
+    // Options
     modern: true,
-    css: [
-        'modern-normalize/modern-normalize.css',
-        'highlight.js/styles/github.css',
-        '~assets/style.css',
-    ],
     srcDir: __dirname,
     rootDir: resolve(
         __dirname,
@@ -61,6 +57,18 @@ export default {
         __dirname,
         '.nuxt',
     ),
+    watch: [
+        resolve(
+            __dirname,
+            '../lib/module'
+        ),
+    ],
+    // Library
+    css: [
+        'modern-normalize/modern-normalize.css',
+        'highlight.js/styles/github.css',
+        '~assets/style.css',
+    ],
     head: {
         htmlAttrs: {
             lang: 'en',
@@ -111,6 +119,9 @@ export default {
     /*
      ** Build configuration
      */
+    /*
+    * Build
+    */
     build: {
         loaders: {
             vue: {
@@ -120,26 +131,9 @@ export default {
                 },
             },
         },
-        babel: {
-            presets: (
-                { isServer },
-            ) => [
-                [
-                    require.resolve(
-                        '@nuxt/babel-preset-app',
-                    ),
-                    {
-                        buildTarget: isServer ? 'server' : 'client',
-                        corejs: {
-                            version: 3,
-                        },
-                    },
-                ],
-            ],
-        },
         /*
-         ** Minifier
-         */
+        ** Minifier
+        */
         html: {
             minify: {
                 collapseBooleanAttributes: true,
@@ -162,8 +156,8 @@ export default {
             },
         },
         /*
-         ** Run lint on save
-         */
+        ** Run lint on save
+        */
         extend(
             config,
             {
@@ -173,8 +167,8 @@ export default {
         ) {
 
             /*
-             ** ESLint loaded
-             */
+            ** ESLint loaded
+            */
             isDev && isClient && config.module.rules.push(
                 {
                     enforce: 'pre',

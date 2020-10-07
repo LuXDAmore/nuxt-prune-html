@@ -35,7 +35,6 @@
     );
 
     export default {
-        name: 'homepage',
         computed: {
             readme: () => markdown,
         },
