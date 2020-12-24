@@ -1,34 +1,12 @@
-function cleanHeaders(
- headers = {}
-) {
-
-    if( headers && typeof headers === 'object' ) {
-
-    for( const name in headers ) {
-
-            if( name && ! headers[ name ] )
-                delete headers[ name ];
-
-        }
-
-}
-    return headers;
-
-}
-
 export function setHeaders(
- res, headers
+ res, headers = {}
 ) {
 
-    const cleanedHeaders = cleanHeaders(
- headers
-);
+for( const name in headers ) {
 
-    if( cleanedHeaders && Object.keys(
- cleanedHeaders
-).length ) {
-
-for( const name in cleanedHeaders ) {
+    if( ! headers[ name ] )
+        delete headers[ name ];
+    else {
 
 res.setHeader(
  name,
@@ -40,3 +18,4 @@ headers[ name ]
 }
 
 }
+
