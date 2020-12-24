@@ -125,7 +125,8 @@ ___
             hookRenderRoute: true, // Activate the prune during the `hook:render:route`
             hookGeneratePage: true, // Activate the prune during the `hook:generate:page`
             lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
-            headerName: 'user-agent', // Value of a custom header name passed from a Lambda Edge function, or similar
+            headerName: 'user-agent', // Value of a custom header name passed from a Lambda Edge function, or similar,
+            additionalHeaders: {}, // Pass additional headers in response from server, if bot/lighthouse/.. hits (Usage:- Bypass template caching in case of these headers, Use seperate caching for bot hits etc..) `ex. { new-header: 'header-value' }`
         },
 
     };
