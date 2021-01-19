@@ -43,15 +43,16 @@ These library was born to remove the scripts injected in the HTML only if a visi
 **Cons:**
 
 - no SPA navigation;
-- no lazy-load for images (only if [native](https://web.dev/native-lazy-loading/), or with a custom `script` or with `selectorToKeep` );
+- no lazy-load for images (available only if [native](https://web.dev/native-lazy-loading/), or with a custom `script` / `selectorToKeep`, check the _configuration_);
 - no `<client-only>` [html](https://nuxtjs.org/api/components-client-only/).
 
 **Pro:**
 
 - some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. Bots doesn't need `SPA navigation`, `client-only` tags could lead in a slower TTI);
+- you can "restore" lazy-load with a custom `script`, only for Bots;
 - less HTML;
-- is not considered [black-hat](https://www.wordstream.com/black-hat-seo) or [cloaking](https://en.wikipedia.org/wiki/Cloaking).
 - BOTS only have the Javascript they need;
+- is not considered [black-hat](https://www.wordstream.com/black-hat-seo) or [cloaking](https://en.wikipedia.org/wiki/Cloaking);
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
 - fast TTI, fast FCP, fast FMP, *fast all*.
 
