@@ -50,6 +50,7 @@ These library was born to remove the scripts injected in the HTML only if a visi
 
 - some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. Bots doesn't need `SPA navigation`, `client-only` tags could lead in a slower TTI);
 - less HTML;
+- is not considered [black-hat](https://www.wordstream.com/black-hat-seo) or [cloaking](https://en.wikipedia.org/wiki/Cloaking).
 - BOTS only have the Javascript they need;
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
 - fast TTI, fast FCP, fast FMP, *fast all*.
