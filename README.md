@@ -34,7 +34,7 @@ So, usually, for a bot or for a human, the website its almost visually the same 
 
 These library was born to remove the scripts injected in the HTML only if a visitor is a **Bot** or a "**Chrome Lighthouse**". This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/).
 
-> Obviously this could cause some unexpected behaviors.
+> This could cause some unexpected behaviors.
 
 ### Pro et contra
 
@@ -43,15 +43,15 @@ These library was born to remove the scripts injected in the HTML only if a visi
 **Cons:**
 
 - no SPA navigation;
-- no lazy-load for images (available only if [native](https://web.dev/native-lazy-loading/), or with a custom `script` / `selectorToKeep`, check the _configuration_);
+- no `lazy-load` for images (available only if [native](https://web.dev/native-lazy-loading/), or with a custom `script` / `selectorToKeep`, check the _configuration_);
 - no `<client-only>` [html](https://nuxtjs.org/api/components-client-only/).
 
 **Pro:**
 
 - some of these features aren't "used by" a Bot or a Lighthouse Audit, so you don't really need them (ex. Bots doesn't need `SPA navigation`, `client-only` tags could lead in a slower TTI);
-- you can "restore" lazy-load with a custom `script`, only for Bots;
+-`lazy-load` can be restored with a custom `script` / `selectorToKeep`, only for matched Bots;
 - less HTML;
-- BOTS only have the Javascript they need;
+- Bots only have the Javascript they need;
 - is not considered [black-hat](https://www.wordstream.com/black-hat-seo) or [cloaking](https://en.wikipedia.org/wiki/Cloaking);
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
 - fast TTI, fast FCP, fast FMP, *fast all*.
