@@ -47,6 +47,7 @@ const meta = [
 
 export default {
     // Options
+    target: 'static',
     modern: true,
     srcDir: __dirname,
     rootDir: resolve(
