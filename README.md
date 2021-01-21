@@ -1,29 +1,29 @@
 # 🎉 Nuxt Prune HTML
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![Circle CI][circle-ci-src]][circle-ci-href]
+[![Code Quality][quality-src]][quality-href]
 [![Dependencies][dependencies-src]][dependencies-href]
-[![License][license-src]][license-href]
-[![Donate][donate-src]][donate-href]
+[![Circle CI][circle-ci-src]][circle-ci-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![npm version][npm-version-src]][npm-version-href]
+[![Donate][paypal-donate-src]][paypal-donate-href]
 
-[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-prune-html/latest.svg?style=flat-square
-[npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
+[quality-src]: https://img.shields.io/badge/code%20quality-A-informational?style=flat
+[quality-href]: https://luxdamore.github.io/nuxt-prune-html/
 
-[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-prune-html.svg?style=flat-square
-[npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
-
-[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/nuxt-prune-html.svg?style=flat-square
-[circle-ci-href]: https://circleci.com/gh/LuXDAmore/nuxt-prune-html
-
-[dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg?style=flat-square
+[dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-darkgreen.svg?style=flat
 [dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
 
-[license-src]: https://img.shields.io/npm/l/@luxdamore/nuxt-prune-html.svg?style=flat-square
-[license-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
+[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/nuxt-prune-html.svg?style=flat&color=darkgreen
+[circle-ci-href]: https://circleci.com/gh/LuXDAmore/nuxt-prune-html
 
-[donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
-[donate-href]: https://www.paypal.com/paypalme2/luxdamore
+[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-prune-html.svg?style=flat&color=orange
+[npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
+
+[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-prune-html/latest.svg?style=flat&color=orange
+[npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
+
+[paypal-donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
+[paypal-donate-href]: https://www.paypal.me/luxdamore
 
 > Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots by removing all the scripts with dynamic rendering.
 
@@ -185,15 +185,14 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 [MIT License](./LICENSE) // Copyright (©) 2019-present [Luca Iaconelli](https://lucaiaconelli.it)
 
-#### 💸 Are you feeling generous today?  :)
-
-Do you want to share a beer? We can be good friends..
-__[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
-
-> _It's always a good day to be magnanimous - cit_
-
 #### 💼 Hire me
 
-[![Contacts](https://img.shields.io/badge/email-Contact%20me-success)](https://lucaiaconelli.it)
+[![Contacts](https://img.shields.io/badge/Contact%20Me-Let's%20Talk-informational?style=social&logo=minutemailer)](https://lucaiaconelli.it)
 
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
+#### 💸 Are you feeling generous today?
+
+If You want to share a beer, we can be really good friends
+
+__[Paypal][paypal-donate-href] // [Patreon](https://www.patreon.com/luxdamore) // [Ko-fi](https://ko-fi.com/luxdamore)__
+
+> ☀ _It's always a good day to be magnanimous_ - cit.
