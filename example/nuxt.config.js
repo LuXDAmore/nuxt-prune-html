@@ -67,7 +67,6 @@ export default {
     // Library
     css: [
         'modern-normalize/modern-normalize.css',
-        'highlight.js/styles/github.css',
         '~assets/style.css',
     ],
     head: {

@@ -38,16 +38,12 @@
         computed: {
             readme: () => markdown,
         },
-        mounted() {
+        async mounted() {
 
-            this.$nextTick(
-                () => {
+            await this.$nextTick();
 
-                    this.initHighlight();
-                    this.initReadmeLinks();
-
-                },
-            );
+            this.initReadmeLinks();
+            this.initHighlight();
 
         },
         methods: {
@@ -66,34 +62,34 @@
             },
             initReadmeLinks() {
 
-                const links = document.querySelectorAll(
-                    '.readme > article a, .readme > article pre',
+                const LINKS = document.querySelectorAll(
+                    '.readme > article a',
                 );
 
-                for( let i = 0; i < links.length; i ++ ) {
+                LINKS.forEach(
+                    link => {
 
-                    if( links[ i ].tagName === 'A' ) {
-
-                        links[ i ].setAttribute(
+                        link.setAttribute(
                             'target',
                             '_blank',
                         );
 
-                        links[ i ].setAttribute(
+                        link.setAttribute(
                             'rel',
                             'noopener',
                         );
 
-                        links[ i ].setAttribute(
+                        link.setAttribute(
                             'title',
-                            links[ i ].textContent,
+                            link.textContent,
                         );
 
                     }
-
-                }
+                );
 
             },
         },
     };
 </script>
+
+<style src="highlight.js/styles/github.css"></style>
