@@ -14,6 +14,16 @@ const BASE_URL = '/';
 
 config.dev = false;
 config.router.base = BASE_URL;
+config.head.script && config.head.script.push(
+    {
+        once: true,
+        hid: 'keep-me',
+        src: '/scripts/keep-me.js',
+        class: 'nuxt-prune--keep',
+        async: true,
+        defer: true,
+    },
+);
 
 // New features
 config.pruneHtml = {

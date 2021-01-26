@@ -33,16 +33,7 @@ const meta = [
             href: '/humans.txt',
         },
     ]
-    , script = [
-        {
-            once: true,
-            hid: 'keep-me',
-            src: '/scripts/keep-me.js',
-            class: 'nuxt-prune--keep',
-            async: true,
-            defer: true,
-        },
-    ]
+    , script = []
 ;
 
 export default {
