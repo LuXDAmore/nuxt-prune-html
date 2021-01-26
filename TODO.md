@@ -8,4 +8,5 @@
 - Add an header option to always allow pruning;
 - Add an HTML class if pruned;
 - Allow a query parameters for prune;
+- Change `Lighthouse` strings to `Audit`;
 - Add more tests.

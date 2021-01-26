@@ -31,7 +31,7 @@
 
 Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles). So, usually, for a bot or for a human, the website its almost visually the same without Javascript.
 
-This library is born to remove the scripts injected in the HTML **only** if a visitor is a **Bot** (or a "**Performance Audit**").
+This library is born to remove the scripts injected in the HTML **only** if a visitor is a **Bot** (or a "**Performance Audit**", ex. **Lighthouse**).
 This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/).
 
 > Inspired by this [rcfs](https://github.com/nuxt/rfcs/issues/22) and this [issue](https://github.com/nuxt/nuxt.js/issues/2822).
@@ -61,7 +61,6 @@ ___
 
 ### Advices
 
-- The plugin is not activated during `development` so, to test the some results, be sure to check the `production-deployment` of [nuxtjs](https://nuxtjs.org/docs/2.x/get-started/commands#production-deployment);
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear to a Bot (with this module activated)**;
 - If you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior by setting the `hookGeneratePage` configuration value to `false`);
 - If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
@@ -161,6 +160,20 @@ With `link` and `script` it's possibile to add one or more objects ex.:
 ```
 
 > **N.B.:** _the config is only shallow merged, not deep merged_.
+
+___
+
+Since version **v2.0.0**, there are some deprecations warning:
+
+```js
+
+    export default {
+        ignoreBotOrLighthouse: false, // @deprecated, use `ignoreBotOrAudit` instead
+        isLighthouse: true, // @deprecated, use `isAudit` instead
+        lighthouseUserAgent: 'lighthouse', // @deprecated, use `auditUserAgent` instead
+    };
+
+```
 
 ___
 
