@@ -1,6 +1,14 @@
 {
+    // CSS
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "html.validate.styles": false,
+    // Markdown
+    "markdownlint.ignore": [
+        "CHANGELOG.md"
+    ],
     // ESLint
-    "eslint.enable": true,
     "eslint.alwaysShowStatus": true,
     "eslint.options": {
         "extensions": [
@@ -8,16 +16,32 @@
             ".vue"
         ]
     },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    },
+    "stylelint.enable": true,
+    "stylelint.snippet": [
+        "css",
+        "less",
+        "postcss",
+        "sass",
+        "scss",
+        "stylus"
+    ],
     // Vue
-    "prettier.singleQuote": true,
-    "prettier.tabWidth": 4,
-    "prettier.trailingComma": "all",
-    "prettier.printWidth": 120,
-    "prettier.jsxSingleQuote": true,
+    "vetur.format.styleInitialIndent": true,
+    "vetur.validation.template": false,
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.scss": "prettier",
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatter.ts": "prettier-tslint",
+    "vetur.format.options.tabSize": 4,
+    "prettier.vueIndentScriptAndStyle": true,
+    "vetur.experimental.templateInterpolationService": true,
     // Colors
     "workbench.colorCustomizations": {
         "activityBar.background": "#65c89b",
-        "activityBar.activeBackground": "#65c89b",
         "activityBar.activeBorder": "#945bc4",
         "activityBar.foreground": "#15202b",
         "activityBar.inactiveForeground": "#15202b99",
@@ -29,17 +53,29 @@
         "titleBar.inactiveForeground": "#15202b99",
         "statusBar.background": "#42b883",
         "statusBarItem.hoverBackground": "#359268",
-        "statusBar.foreground": "#15202b"
+        "statusBar.foreground": "#15202b",
+        "activityBar.activeBackground": "#65c89b"
     },
     "peacock.color": "#42b883",
-    "markdownlint.ignore": [
-        "CHANGELOG.md"
+    // Dictionary
+    "cSpell.ignorePaths": [
+        ".vscode",
+        "dist",
+        "ssr",
+        "node_modules",
+        "bower_components",
+        ".git"
     ],
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
+    "cSpell.language": "en,it",
+    "cSpell.allowCompoundWords": true,
     "cSpell.ignoreWords": [
         "pbody",
         "phead"
+    ],
+    "cSpell.words": [
+        "audiotsm",
+        "jabrils",
+        "numpy",
+        "scipy"
     ]
 }

@@ -1,0 +1,54 @@
+/* Better UI for the generated for the Readme */
+.readme ::v-deep > section > p:nth-child(2) {
+
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-height: 36px;
+    padding: 6px 12px;
+    overflow-x: auto;
+    font-size: 0;
+    background-color: rgba( 220, 230, 240, .63 );
+    border-radius: 5px;
+
+}
+
+.readme ::v-deep a {
+
+    display: inline-block;
+    margin: 2px 1px;
+
+}
+
+.readme ::v-deep blockquote {
+
+    margin: 1rem auto;
+    padding: 4px 0 4px 1.5rem;
+    color: #819198;
+    border-left: .3rem solid #dce6f0;
+
+}
+
+.readme ::v-deep blockquote p {
+
+    margin: 0;
+
+}
+
+.readme ::v-deep code {
+
+    display: inline-block;
+    padding: 0 3px;
+    background-color: #dce6f0;
+    border-radius: 6px;
+
+}
+
+.readme ::v-deep pre code {
+
+    display: block;
+    padding: .5em;
+    background-color: #f8f8f8;
+
+}

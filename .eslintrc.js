@@ -1,27 +1,60 @@
+'use strict';
+
 module.exports = {
     root: true,
+    env: {
+        browser: true,
+        node: true,
+        es6: true,
+    },
     parserOptions: {
+        ecmaVersion: 2021,
         parser: 'babel-eslint',
         sourceType: 'module',
+        ecmaFeatures: {
+            jsx: true,
+        },
     },
     extends: [
-        '@nuxtjs',
         'eslint:recommended',
-        'plugin:nuxt/recommended',
-        'plugin:vue/recommended',
+        'plugin:unicorn/recommended',
+        '@nuxtjs',
+        'prettier',
+        'prettier/vue',
+        'plugin:prettier/recommended',
         '@vue/prettier',
+        'plugin:vue/strongly-recommended',
+        'plugin:nuxt/recommended',
     ],
     plugins: [
         'standard',
-        'compat',
-        'import',
-        'promise',
         'unicorn',
+        'prettier',
+        'compat',
+        'promise',
+        'import',
+        'eslint-comments',
+    ],
+    overrides: [
+        {
+            files: [ '**/_test_/*.{j,t}s?(x)' ],
+            env: {
+                jest: true,
+            },
+        },
     ],
     rules: {
         'indent': 'off',
-        'no-console': 'off',
-        'no-debugger': 'error',
+        'no-console': [
+            'warn',
+            {
+                allow: [
+                    'info',
+                    'error',
+                ],
+            },
+        ],
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
         'one-var': [
             'warn',
             {
@@ -32,13 +65,13 @@ module.exports = {
             },
         ],
         'spaced-comment': [
- 'warn',
-'always',
-],
+            'warn',
+            'always',
+        ],
         'function-call-argument-newline': [
- 'warn',
-'always',
-],
+            'warn',
+            'always',
+        ],
         'prefer-const': 'warn',
         'no-useless-rename': [
             'warn',
@@ -51,7 +84,7 @@ module.exports = {
             'always',
         ],
         'template-curly-spacing': [
-            'warn',
+            'warn', // TODO: Set to warn, waiting for compatibility
             'always',
         ],
         'array-element-newline': [
@@ -70,9 +103,7 @@ module.exports = {
         ],
         'function-paren-newline': [
             'warn',
-            {
-                minItems: 1,
-            },
+            'multiline-arguments',
         ],
         'brace-style': [
             'warn',
@@ -147,7 +178,8 @@ module.exports = {
         'no-multiple-empty-lines': [
             'warn',
             {
-                max: 2,
+                max: 1,
+                maxEOF: 1,
                 maxBOF: 1,
             },
         ],
@@ -230,7 +262,7 @@ module.exports = {
                 },
                 ObjectPattern: {
                     multiline: true,
-                    minProperties: 2,
+                    minProperties: 3,
                 },
                 ImportDeclaration: {
                     multiline: true,
@@ -273,9 +305,9 @@ module.exports = {
         ],
         'dot-notation': 'warn',
         'eqeqeq': [
- 'warn',
-'always',
-],
+            'warn',
+            'always',
+        ],
         'camelcase': [
             'off',
             {
@@ -352,6 +384,9 @@ module.exports = {
                         before: true,
                         after: false,
                     },
+                    finally: {
+                        after: true,
+                    },
                 },
             },
         ],
@@ -382,15 +417,15 @@ module.exports = {
             'warn',
             {
                 vars: 'all',
-                args: 'after-used', // This needs to be off so we can specify mixin interfaces
+                args: 'after-used',
                 ignoreRestSiblings: true,
                 caughtErrors: 'all',
                 argsIgnorePattern: '^_',
             },
         ],
         'max-len': [
-            'warn',
-            300,
+            'off',
+            1200,
             4,
             {
                 ignoreUrls: true,
@@ -413,9 +448,54 @@ module.exports = {
             },
         ],
         // Plugins
-        // Standard
+        // Unicorn
+        'unicorn/import-style': 'off',
+        'unicorn/no-hex-escape': 'off',
+        'unicorn/no-array-reduce': 'off',
+        'unicorn/no-array-for-each': 'off',
+        'unicorn/no-object-as-default-parameter': 'off',
+        'unicorn/no-for-loop': 'warn',
+        'unicorn/prefer-number-properties': 'warn',
+        'unicorn/no-zero-fractions': 'warn',
+        'unicorn/catch-error-name': 'warn',
+        'unicorn/prevent-abbreviations': [
+            'warn',
+            {
+                whitelist: {
+                    obj: true,
+                },
+            },
+        ],
+        'unicorn/filename-case': [
+            'warn',
+            {
+                cases: {
+                    kebabCase: true,
+                    camelCase: true,
+                    pascalCase: true,
+                },
+            },
+        ],
+        'unicorn/explicit-length-check': 'off',
+        'unicorn/prefer-exponentiation-operator': 'off',
+        'unicorn/no-array-instanceof': 'off',
+        'unicorn/prefer-starts-ends-with': 'off',
+        'unicorn/prefer-text-content': 'off',
         'unicorn/prefer-includes': 'warn',
-        'standard/computed-property-even-spacing': 'off',
+        'unicorn/better-regex': [
+            'error',
+            {
+                sortCharacterClasses: false,
+            },
+        ],
+        'unicorn/no-null': 'off',
+        'unicorn/consistent-function-scoping': 'off',
+        'unicorn/no-useless-undefined': 'off',
+        // Standard
+        'standard/computed-property-even-spacing': [
+            'warn',
+            'always',
+        ],
         'standard/object-curly-even-spacing': [
             'warn',
             'either',
@@ -429,6 +509,72 @@ module.exports = {
                 allowComputed: true,
             },
         ],
+        'import/no-anonymous-default-export': 'off',
+        'import/no-absolute-path': 'warn',
+        'import/no-named-default': 'warn',
+        'import/no-webpack-loader-syntax': 'warn',
+        'import/no-self-import': 'warn',
+        'import/default': 'warn',
+        'import/export': 'warn',
+        'import/extensions': [
+            'warn',
+            {
+                js: 'never',
+                jsx: 'never',
+                md: 'always',
+                json: 'always',
+                svg: 'always',
+                css: 'always',
+            },
+        ],
+        'import/no-useless-path-segments': [
+            'warn',
+            {
+                noUselessIndex: true,
+            },
+        ],
+        'import/no-extraneous-dependencies': 'off',
+        'import/no-mutable-exports': 'warn',
+        'import/no-named-as-default-member': 'warn',
+        'import/no-named-as-default': 'warn',
+        'import/no-unassigned-import': [
+            'error',
+            {
+                allow: [
+                    '@babel/polyfill',
+                    '**/register',
+                    '**/register/**',
+                    '**/*.css',
+                    '**/*.scss',
+                    '**/*.sass',
+                    '**/*.postcss',
+                    '**/*.less',
+                ],
+            },
+        ],
+        // Promise
+        'promise/param-names': 'warn',
+        'promise/no-return-wrap': [
+            'warn',
+            {
+                allowReject: true,
+            },
+        ],
+        'promise/no-new-statics': 'warn',
+        'promise/no-return-in-finally': 'warn',
+        'promise/valid-params': 'warn',
+        'promise/prefer-await-to-then': 'warn',
+        // Comments
+        'eslint-comments/disable-enable-pair': [
+            'warn',
+            {
+                allowWholeFile: true,
+            },
+        ],
+        'eslint-comments/no-aggregating-enable': 'warn',
+        'eslint-comments/no-duplicate-disable': 'warn',
+        'eslint-comments/no-unused-disable': 'warn',
+        'eslint-comments/no-unused-enable': 'warn',
         // Compat
         'compat/compat': 'warn',
         // Vuejs
@@ -437,11 +583,21 @@ module.exports = {
         'vue/no-v-html': 'off',
         'vue/no-unused-vars': 'warn',
         'vue/no-unused-components': 'warn',
+        'vue/valid-v-slot': [
+            'warn',
+            {
+                allowModifiers: true,
+            },
+        ],
         'vue/no-use-v-if-with-v-for': [
             'warn',
             {
                 allowUsingIterationVar: true,
             },
+        ],
+        'vue/component-definition-name-casing': [
+            'warn',
+            'kebab-case',
         ],
         'vue/component-name-in-template-casing': [
             'warn',
@@ -450,6 +606,20 @@ module.exports = {
         'vue/name-property-casing': [
             'warn',
             'kebab-case',
+        ],
+        'vue/singleline-html-element-content-newline': [
+            'warn',
+            {
+                ignoreWhenEmpty: false,
+                ignores: [ 'slot' ],
+            },
+        ],
+        'vue/multiline-html-element-content-newline': [
+            'warn',
+            {
+                ignoreWhenEmpty: false,
+                allowEmptyLines: true,
+            },
         ],
         'vue/attribute-hyphenation': [
             'warn',

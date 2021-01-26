@@ -1,9 +1,31 @@
+# Common
+.DS_Store
 node_modules
 bower_components
+.eslintcache
 *.iml
 .idea
-*.log*
 .nuxt
-.DS_Store
 coverage
 dist
+
+# Generated
+src/**/sw.js
+src/**/humans.txt
+src/**/browserconfig.xml
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+report.*
+*.heapsnapshot
+*.log
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

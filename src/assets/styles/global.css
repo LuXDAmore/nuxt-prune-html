@@ -1,0 +1,50 @@
+:root {
+
+    font-size: 16px;
+
+}
+
+html {
+
+    text-size-adjust: 100%; /* stylelint-disable-line */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+
+}
+
+body {
+
+    color: #333;
+    background-color: #333;
+
+}
+
+.container {
+
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+
+}
+
+main {
+
+    background-color: #fff;
+    border-radius: 6px;
+
+}
+
+h1 {
+
+    font-size: 2em;
+    text-transform: uppercase;
+
+}
+
+a {
+
+    color: #106a10;
+
+}

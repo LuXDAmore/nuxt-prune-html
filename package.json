@@ -1,9 +1,6 @@
 {
     "name": "@luxdamore/nuxt-prune-html",
-    "version": "1.5.0",
     "description": "Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots by removing all the scripts with dynamic rendering",
-    "author": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)",
-    "license": "MIT",
     "homepage": "https://luxdamore.github.io/nuxt-prune-html",
     "keywords": [
         "nuxt-module",
@@ -24,45 +21,51 @@
         "dynamic-rendering",
         "measure"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LuXDAmore/nuxt-prune-html.git"
+    },
+    "bugs": {
+        "url": "https://github.com/LuXDAmore/nuxt-prune-html/issues"
+    },
+    "files": [
+        "lib"
+    ],
+    "main": "lib/module.js",
+    "version": "1.5.0",
+    "license": "MIT",
+    "author": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)",
     "contributors": [
         {
             "name": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)"
         }
     ],
-    "main": "lib/module.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/LuXDAmore/nuxt-prune-html.git"
-    },
-    "bugs": {
-        "url": "https://github.com/LuXDAmore/nuxt-prune-html/issues"
-    },
     "publishConfig": {
         "access": "public"
     },
     "scripts": {
-        "dev": "nuxt -o example",
-        "build": "nuxt build example",
+        "cheerio": "node test-utils/cheerio.js",
+        "serve": "nuxt -o src",
+        "dev": "nuxt -o src",
+        "build": "nuxt build src",
         "preexport": "yarn build",
-        "export": "nuxt export example",
-        "cheerio": "node utils/cheerio.js",
+        "export": "nuxt export src",
         "prestart": "yarn build",
-        "start": "nuxt start example",
-        "generate": "nuxt generate example",
+        "start": "nuxt start src",
+        "generate": "nuxt generate src",
         "eslint": "eslint --ext .js,.vue .",
         "eslint-fix": "eslint --fix --ext .js,.vue .",
-        "lint": "yarn eslint",
-        "lint-fix": "yarn eslint-fix",
+        "stylelint": "stylelint src/**/*.css",
+        "stylelint-fix": "stylelint src/**/*.css --fix",
+        "lint": "yarn eslint && yarn stylelint",
+        "lint-fix": "yarn eslint-fix && yarn stylelint-fix",
         "pretest": "yarn lint",
         "test": "jest",
         "release": "yarn test && yarn generate && standard-version && git push --follow-tags && yarn publish"
     },
-    "files": [
-        "lib"
-    ],
     "dependencies": {
         "cheerio": "^1.0.0-rc.5",
-        "consola": "^2.15.0",
+        "consola": "latest",
         "mobile-detect": "^1.4.4"
     },
     "devDependencies": {
@@ -71,37 +74,71 @@
         "@babel/runtime-corejs3": "^7.11.2",
         "@commitlint/cli": "^11.0.0",
         "@commitlint/config-conventional": "^11.0.0",
+        "@luxdamore/nuxt-humans-txt": "latest",
+        "@nuxt/types": "^2.14.12",
+        "@nuxt/typescript-build": "^2.0.4",
+        "@nuxtjs/browserconfig": "0.0.13",
+        "@nuxtjs/component-cache": "^1.1.5",
         "@nuxtjs/eslint-config": "^5.0.0",
+        "@nuxtjs/eslint-module": "^3.0.2",
         "@nuxtjs/markdownit": "^2.0.0",
         "@nuxtjs/module-test-utils": "^1.6.3",
+        "@nuxtjs/pwa": "^3.3.4",
         "@nuxtjs/sitemap": "^2.4.0",
+        "@nuxtjs/stylelint-module": "^4.0.0",
         "@vue/eslint-config-prettier": "latest",
         "babel-eslint": "latest",
         "babel-jest": "^26.5.2",
         "codecov": "^3.8.0",
         "core-js": "^3.6.5",
-        "eslint": "^7.10.0",
+        "eslint": "^7.15.0",
+        "eslint-config-prettier": "^7.0.0",
         "eslint-config-standard": "^16.0.2",
         "eslint-loader": "^4.0.2",
-        "eslint-plugin-compat": "^3.8.0",
-        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-compat": "^3.9.0",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-import": "^2.21.1",
+        "eslint-plugin-jest": "^24.1.3",
         "eslint-plugin-node": "^11.0.0",
         "eslint-plugin-nuxt": "^2.0.0",
-        "eslint-plugin-prettier": "^3.1.4",
-        "eslint-plugin-promise": "latest",
+        "eslint-plugin-prettier": "^3.3.0",
+        "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^5.0.0",
         "eslint-plugin-unicorn": "^27.0.0",
-        "eslint-plugin-vue": "^7.0.1",
+        "eslint-plugin-vue": "^7.3.0",
         "highlight.js": "^10.2.1",
-        "husky": "^4.3.0",
+        "husky": "^4.3.7",
         "jest": "^26.5.2",
         "jsdom": "^16.4.0",
+        "lint-staged": "^10.5.3",
         "markdownlint": "^0.22.0",
         "modern-normalize": "^1.0.0",
         "nuxt": "^2.14.12",
         "nuxt-compress": "^4.1.0",
+        "nuxt-jsonld": "^1.4.9",
+        "nuxt-start": "^2.14.12",
         "prettier": "^2.2.1",
         "prettier-eslint": "^12.0.0",
-        "standard-version": "^9.0.0"
+        "prettier-stylelint": "^0.4.2",
+        "standard-version": "^9.0.0",
+        "stylelint": "^13.8.0",
+        "stylelint-config-prettier": "^8.0.2",
+        "stylelint-config-rational-order": "^0.1.2",
+        "stylelint-config-sass-guidelines": "^7.0.0",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-no-unsupported-browser-features": "^4.1.4",
+        "stylelint-order": "^4.1.0",
+        "stylelint-scss": "^3.14.0"
+    },
+    "lint-staged": {
+        "*.vue": "npm run lint",
+        "*.{ts,js}": "npm run eslint",
+        "*.{css,scss}": "npm run stylelint"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "lint-staged"
+        }
     }
 }

@@ -1,34 +1,46 @@
-// Test utils
-import {
-    setup,
-    get,
-} from '@nuxtjs/module-test-utils';
+/*
+*   * Test utils
+*/
+import { setup, get } from '@nuxtjs/module-test-utils';
 
-// Dom utils
+/*
+*   * DOM
+*/
 import { JSDOM } from 'jsdom';
 
-// Nuxt config
-import config from '../example/nuxt.config';
+/*
+*   * Package data
+*/
+import * as PACKAGE from '../package.json';
 
-const BASE_URL = '/';
+/*
+*   * Nuxt configuration
+*/
+import config from '../src/nuxt.config';
 
+delete config.server;
 config.dev = false;
-config.router.base = BASE_URL;
 
-// Url generator for User Agents
-const headers = ua => (
-    ! ua
-    ? {}
-    : {
-        'User-Agent': ua,
-    }
-);
+/*
+*   * Set url for the generated website
+*/
+const BASE_URL = PACKAGE.homepage.replace(
+        'https://luxdamore.github.io/',
+        '/'
+    )
+    , TIMING = 90000
+;
 
-// Tests
+/*
+*   * Module testing suite
+*/
 describe(
     'module',
     () => {
 
+        /*
+        *   * Nuxt
+        */
         let nuxt;
 
         beforeAll(
@@ -43,7 +55,7 @@ describe(
                 );
 
             },
-            90000
+            TIMING
         );
 
         afterAll(
@@ -52,9 +64,12 @@ describe(
                 await nuxt.close();
 
             },
-            90000
+            TIMING
         );
 
+        /*
+        *   * Tests
+        */
         test(
             'render',
             async() => {
@@ -70,19 +85,29 @@ describe(
                 );
 
             },
-            90000
+            TIMING
         );
 
-        const getElements = async(
+        /*
+        *   * Utils
+        */
+        const getDomElementsLength = async(
             selector,
-            ua
+            ua = null
         ) => {
 
+            /*
+            *   * HTML
+            */
             const html = await get(
                     BASE_URL,
                     {
-                        headers: headers(
+                        headers: (
                             ua
+                            ? {
+                                'User-Agent': ua,
+                            }
+                            : {}
                         ),
                     }
                 )
@@ -98,6 +123,9 @@ describe(
 
         };
 
+        /*
+        *   * Humans
+        */
         describe(
             'human',
             () => {
@@ -106,7 +134,7 @@ describe(
                     'preload-scripts',
                     async() => {
 
-                        const elements = await getElements(
+                        const elements = await getDomElementsLength(
                             'link[rel="preload"][as="script"]'
                         );
 
@@ -118,14 +146,14 @@ describe(
                         );
 
                     },
-                    90000
+                    TIMING
                 );
 
                 test(
                     'scripts',
                     async() => {
 
-                        const elements = await getElements(
+                        const elements = await getDomElementsLength(
                             'script:not([type="application/ld+json"])',
                         );
 
@@ -137,12 +165,15 @@ describe(
                         );
 
                     },
-                    90000
+                    TIMING
                 );
 
             }
         );
 
+        /*
+        *   * Bots
+        */
         describe(
             'bot',
             () => {
@@ -153,7 +184,7 @@ describe(
                     'preload-scripts',
                     async() => {
 
-                        const elements = await getElements(
+                        const elements = await getDomElementsLength(
                             'link[rel="preload"][as="script"]',
                             USER_AGENT
                         );
@@ -166,14 +197,14 @@ describe(
                         );
 
                     },
-                    90000
+                    TIMING
                 );
 
                 test(
                     'scripts',
                     async() => {
 
-                        const elements = await getElements(
+                        const elements = await getDomElementsLength(
                             'script:not([type="application/ld+json"])',
                             USER_AGENT
                         );
@@ -186,7 +217,7 @@ describe(
                         );
 
                     },
-                    90000
+                    TIMING
                 );
 
             }

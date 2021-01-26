@@ -8,7 +8,7 @@ import {
 import { JSDOM } from 'jsdom';
 
 // Nuxt config
-import config from '../example/nuxt.config';
+import config from '../src/nuxt.config';
 
 const BASE_URL = '/';
 
