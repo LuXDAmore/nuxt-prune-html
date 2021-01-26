@@ -90,7 +90,7 @@
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-promise": "latest",
         "eslint-plugin-standard": "^5.0.0",
-        "eslint-plugin-unicorn": "^26.0.1",
+        "eslint-plugin-unicorn": "^27.0.0",
         "eslint-plugin-vue": "^7.0.1",
         "highlight.js": "^10.2.1",
         "husky": "^4.3.0",
