@@ -163,18 +163,6 @@ With `link` and `script` it's possibile to add one or more objects ex.:
 
 ___
 
-Since version **v2.0.0**, there are some deprecations warning:
-
-```js
-
-    export default {
-        ignoreBotOrLighthouse: false, // @deprecated, use `ignoreBotOrAudit` instead
-        isLighthouse: true, // @deprecated, use `isAudit` instead
-        lighthouseUserAgent: 'lighthouse', // @deprecated, use `auditUserAgent` instead
-    };
-
-```
-
 ___
 
 ## 👩🏻‍💻👨🏻‍💻 Development
