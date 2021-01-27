@@ -163,8 +163,6 @@ With `link` and `script` it's possibile to add one or more objects ex.:
 
 ___
 
-___
-
 ## 👩🏻‍💻👨🏻‍💻 Development
 
 1. Clone the repository: `git clone https://github.com/LuXDAmore/nuxt-prune-html.git`;
