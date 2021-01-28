@@ -54,7 +54,7 @@
             initHighlight() {
 
                 const CODE_BLOCKS = document.querySelectorAll(
-                    '.readme pre code',
+                    '.readme code',
                 );
 
                 for( const block of CODE_BLOCKS ) {
@@ -84,7 +84,7 @@
                         'noopener',
                     );
 
-                    link.setAttribute(
+                    link.textContent && link.setAttribute(
                         'title',
                         link.textContent,
                     );
