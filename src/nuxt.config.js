@@ -190,6 +190,13 @@ export default {
             plugin: false,
         },
     },
+    pruneHtml: {
+        enabled: true,
+        pruneOnQueryParam: true,
+    },
+    // pruneHtml: {
+    //     enabled: false,
+    // },
     /*
     *   * Progress bar
     */
@@ -259,6 +266,7 @@ export default {
             __dirname,
             '../docs'
         ),
+        routes: [ '/?prune=1' ],
     },
     /*
     *   * Vue
