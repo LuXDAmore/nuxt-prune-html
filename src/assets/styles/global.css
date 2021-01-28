@@ -23,9 +23,9 @@ body {
 .container {
 
     width: 100%;
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 8px 16px;
 
 }
 
@@ -40,11 +40,22 @@ h1 {
 
     font-size: 2em;
     text-transform: uppercase;
+    line-height: 1;
 
 }
 
 a {
 
     color: #106a10;
+
+}
+
+img {
+
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 16px auto;
+    border-radius: 6px;
 
 }
