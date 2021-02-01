@@ -1,8 +1,11 @@
 module.exports = {
     testEnvironment: 'node',
+    setupFilesAfterEnv: [ './jest.setup.js' ],
     collectCoverage: true,
     collectCoverageFrom: [
         'lib/**/*.js',
+        '!lib/config.**.js',
+        '!lib/logger.js',
         '!lib/plugin.js',
     ],
     moduleNameMapper: {
