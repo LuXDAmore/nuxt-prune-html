@@ -64,14 +64,14 @@ ___
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear to a Bot (with this module activated)**;
 - If you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior by setting the `hookGeneratePage` configuration value to `false`);
 - If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
-- This plugin was thought for Bots and uses only the `remove()` method of `Cheerio`;
+- This plugin was thought for Bots and uses only few `methods` from the `Cheerio` library;
 - You can check the website as a GoogleBot, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
 
 ### Related things you should know
 
-- It use the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library to check if `.is( 'bot' )`, `.match( options.lighthouseUserAgent )` or `.match( options.matchUserAgent )`;
-- Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), so the plugin has access to `req.headers[ 'user-agent' ]` only if the project is **running as a server** (ex. `nuxt start`);
-- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to prune the html.
+- Usage with `type: [ 'mobile-detect' ]`: load the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library to check if `req.headers[ headerName ]` match with `.is( 'bot' )`, `.match( options.auditUserAgent )` or `.match( options.matchUserAgent )`;
+- Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), the plugin has access to `req.headers` only if the project is **running as a server** (ex. `nuxt start`);
+- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to **select and prune** the html.
 
 ___
 
@@ -104,29 +104,52 @@ ___
 
         // Module config
         pruneHtml: {
-            hideErrorsInConsole: false,
-            hideGenericMessagesInConsole: false, // Disabled in production
-            enabled: false, // Disabled in dev-mode due to the hot reload (is client-side)
+            enabled: false, // `true` in production
+            hideGenericMessagesInConsole: false, // `false` in production
+            hideErrorsInConsole: false, // disable the `console.error` method
             selectors: [
-                // Css selectors to prune
+                // CSS selectors to prune
                 'link[rel="preload"][as="script"]',
                 'script:not([type="application/ld+json"])',
             ],
-            selectorToKeep: null, // Disallow pruning of scripts with this class, N.B.: this selector will be appended to every selectors, `ex. script:not([type="application/ld+json"]):not(__VALUE__)`
-            script: [], // Inject custom scripts only for matched UA (BOTS-only)
-            link: [], // Inject custom links only for matched UA (BOTS-only)
+            selectorsToKeep: null, // disallow pruning of scripts with this class (could be an array of classes), N.B.: each `selectorsToKeep` will be appended to every `selectors`, ex.: `script:not([type="application/ld+json"]):not(__selectorToKeep__)`
+            script: [], // Inject custom scripts only if pruning
+            link: [], // Inject custom links only if pruning
             cheerio: {
-                // It use Cheerio under the hood, so this is the object-config passed in the cheerio.load() method
+                // it use the Cheerio library under the hood, so this is the config passed in the `cheerio.load(__config__)` method
                 xmlMode: false,
             },
-            ignoreBotOrLighthouse: false, // Remove selectors in any case, not depending on Bot or Lighthouse
-            isBot: true, // Remove selectors if is a bot
-            isLighthouse: true, // Remove selectors if match the Lighthouse UserAgent
-            matchUserAgent: null, // Remove selectors if this userAgent is matched, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
-            hookRenderRoute: true, // Activate the prune during the `hook:render:route`
-            hookGeneratePage: true, // Activate the prune during the `hook:generate:page`
-            lighthouseUserAgent: 'lighthouse', // Value of the Lighthouse UserAgent, either as String or RegExp (a string will be converted to a case-insensitive RegExp in the MobileDetect library)
-            headerName: 'user-agent', // Value of a custom header name passed from a Lambda Edge function, or similar
+            htmlElementClassOnPrune: null, // this is a string added as a class to the <html> tag (cheerio.addClass())
+            hookRenderRoute: true, // Activate in `hook:render:route`
+            hookGeneratePage: true, // Activate in `hook:generate:page`
+            types: [
+                // it's possibile to add different rules/types of pruning
+                // array of values: [ 'mobile-detect', 'query-parameters', 'header-exist' ]
+                // ex.: `[ 'query-parameters' ]` force only to check query-parameters values
+                'mobile-detect',
+            ],
+            // 👇🏻 Type: `mobile-detect` (always trigger prune during `generate`, if `hookGeneratePage` is `true`)
+            headerName: 'user-agent', // The header-key base for `mobile-detect`, `req.headers[ headerName ]`
+            isBot: true, // remove selectors if is a bot
+            isAudit: true, // remove selectors if match the `auditUserAgent`
+            ignoreBotOrAudit: false, // remove selectors in any case, not depending on Bot or Audit
+            auditUserAgent: 'lighthouse', // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
+            matchUserAgent: null, // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
+            // 👇🏻 Type: 'query-parameters', (you can also specify routes in the generate process, ex.: `generate: { routes: [ '/?prune=true' ] }` )
+            queryParamToPrune: [
+                // array of objects (key-value), trigger the pruning if 'query-parameters' is present in `types` and at least one value is matched from the query-parameters, ex. `/?prune=true`
+                {
+                    key: 'prune',
+                    value: 'true',
+                },
+            ],
+            queryParamToExcludePrune: [], // same as `queryParamToPrune`, exclude the pruning if 'query-parameters' is present in `types` and at least one value is matched from the query-parameters, this is priority over `queryParamToPrune`
+            // 👇🏻 Type: 'header-exist' (always trigger prune during `generate`, if `hookGeneratePage` is `true`)
+            headersToPrune: [], // same as `queryParamToPrune`, but it checks `req.headers` for `key-value`
+            headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `req.headers`, this is priority over `headersToPrune`
+            // Events, callbacks
+            onBeforePrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
+            onAfterPrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
         },
 
     };
@@ -151,7 +174,7 @@ With `link` and `script` it's possibile to add one or more objects ex.:
                     src: '/my-custom-lazy-load-for-bots.js',
                     rel: 'preload',
                     as: 'script',
-                    position: 'phead', // Default value is 'body' --> Other allowed values are: 'phead', 'head' and 'pbody'
+                    position: 'phead', // Default value is 'body', other allowed values are: 'phead', 'head' and 'pbody'
                 },
             ],
         },
@@ -165,10 +188,14 @@ ___
 
 ## 👩🏻‍💻👨🏻‍💻 Development
 
-1. Clone the repository: `git clone https://github.com/LuXDAmore/nuxt-prune-html.git`;
-2. Install dependencies: `yarn install` (or `npm install`);
-3. Start development server: `yarn dev` (or `npm run dev`);
-4. Build the documentation on [*Github Pages*](https://pages.github.com/): `yarn generate` (or `npm run generate`)
+1. **Clone** this repository:
+   - `git clone https://github.com/LuXDAmore/nuxt-prune-html.git`;
+2. **Install** the dependencies
+   - `yarn install` (or `npm install`);
+3. **Start** the development server:
+   - `yarn dev` (or `npm run dev`);
+4. **Extra**, generate the documentation ([*Github Pages*](https://pages.github.com/)):
+   - `yarn generate` (or `npm run generate`);
    - _the content is automatically generated into the `/docs` folder_.
 
 ## 🐞 Issues
