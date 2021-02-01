@@ -36,42 +36,37 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
 
 > Inspired by this [rcfs](https://github.com/nuxt/rfcs/issues/22) and this [issue](https://github.com/nuxt/nuxt.js/issues/2822).
 
+### Features
+
+- Prune based on **mobile detection**;
+  - Match the **user agent**;
+  - Match a **bot**;
+  - Match an **audit**;
+- Prune based on **headers values** (*useful for Lambdas*);
+- Prune based on **query parameters** (*useful during navigation or generation, hybrid-experience*).
+
 ### Pro et contra
 
 > This could cause some unexpected behaviors.
 
 **Cons.:**
 
-- no `SPA Routing`;
-- no `<client-only>` [components](https://nuxtjs.org/api/components-client-only/).
+- no `SPA routing`;
+- no `<client-only>` [components](https://nuxtjs.org/api/components-client-only/);
+- can break `lazy-load` for images.
 
 **Pros.:**
 
-- some of these features aren't "used by" a bot or a audit, so you don't really need them (ex. _bots doesn't handle `SPA Routing` and `<client-only> components` could lead in a slower TTI_);
-- `lazy-load` for images can be fixed with a [native-attribute](https://web.dev/native-lazy-loading/), or with a custom `script` / `selectorToKeep` (_check the configuration_);
+- some of these features aren't "used by" a bot/audit, so you don't really need them (ex. _bots doesn't handle `SPA routing` and `<client-only> components` could lead in a slower TTI_);
+- `lazy-load` for images can be fixed with a [native-attribute](https://web.dev/native-lazy-loading/), or with a custom `script`/`selectorToKeep` (_check the configuration_);
+- `<client-only>` [components](https://nuxtjs.org/api/components-client-only/) can be replaced by a static [placeholder](https://nuxtjs.org/api/components-client-only/);
 - less HTML, assets and resources are served to browsers and clients;
-- bots only have the Javascript they need;
+- bot/audit only have the Javascript they need;
 - with less assets to download, the number of urls crawled should be widely boosted;
-- [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Measure](https://web.dev/measure/) and [Lighthouse Audit in Chrome](https://developers.google.com/web/tools/lighthouse) are already triggered by the plugin without the needing of change any value;
+- bots, [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Google Measure](https://web.dev/measure/) and [Lighthouse Audit](https://developers.google.com/web/tools/lighthouse) are already pruned by the plugin with the default configuration;
 - faster [web-vitals](https://web.dev/vitals/), faster TTI, faster FCP, faster FMP, **faster all**.
 
-**N.B.:** _Valid for Bots, PageSpeed Insights, Google Measure and Lighthouse Audits. This is known as [Dynamic Rendering](https://developers.google.com/search/docs/guides/dynamic-rendering) and **it's not** considered [black-hat](https://www.wordstream.com/black-hat-seo) or [cloaking](https://en.wikipedia.org/wiki/Cloaking)_.
-
-___
-
-### Advices
-
-- Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear to a Bot (with this module activated)**;
-- If you `generate` your site it's not possibile to check the *user-agent*, so i choose to always prune HTML (you can disable this behavior by setting the `hookGeneratePage` configuration value to `false`);
-- If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
-- This plugin was thought for Bots and uses only few `methods` from the `Cheerio` library;
-- You can check the website as a GoogleBot, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
-
-### Related things you should know
-
-- Usage with `type: [ 'mobile-detect' ]`: load the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library to check if `req.headers[ headerName ]` match with `.is( 'bot' )`, `.match( options.auditUserAgent )` or `.match( options.matchUserAgent )`;
-- Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), the plugin has access to `req.headers` only if the project is **running as a server** (ex. `nuxt start`);
-- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to **select and prune** the html.
+**N.B.:** _This is known as [Dynamic Rendering](https://developers.google.com/search/docs/guides/dynamic-rendering) and **it's not** considered [black-hat](https://www.wordstream.com/black-hat-seo) or [cloaking](https://en.wikipedia.org/wiki/Cloaking)_.
 
 ___
 
@@ -79,18 +74,15 @@ ___
 
 ![Lighthouse Audit before](./src/static/lighthouse/before.jpg)
 ![Lighthouse Audit after](./src/static/lighthouse/after.jpg)
+
 ___
 
 ## Setup
 
-1. Add `@luxdamore/nuxt-prune-html` dependency to your project;
+1. Install `@luxdamore/nuxt-prune-html` as a dependency:
+   - `yarn add @luxdamore/nuxt-prune-html`;
+   - or, `npm install --save @luxdamore/nuxt-prune-html`;
 2. Add `@luxdamore/nuxt-prune-html` in the `modules` array of your `nuxt.config.js`.
-
-```bash
-
-    yarn add @luxdamore/nuxt-prune-html # or npm install --save @luxdamore/nuxt-prune-html
-
-```
 
 ## Configuration
 
@@ -99,14 +91,16 @@ ___
     // nuxt.config.js
     export default {
 
-        // Module installation
+        // Module - installation
         modules: [ '@luxdamore/nuxt-prune-html' ],
 
-        // Module config
+        // Module - default config
         pruneHtml: {
             enabled: false, // `true` in production
             hideGenericMessagesInConsole: false, // `false` in production
             hideErrorsInConsole: false, // disable the `console.error` method
+            hookRenderRoute: true, // Activate in `hook:render:route`
+            hookGeneratePage: true, // Activate in `hook:generate:page`
             selectors: [
                 // CSS selectors to prune
                 'link[rel="preload"][as="script"]',
@@ -115,38 +109,36 @@ ___
             selectorsToKeep: null, // disallow pruning of scripts with this class (could be an array of classes), N.B.: each `selectorsToKeep` will be appended to every `selectors`, ex.: `script:not([type="application/ld+json"]):not(__selectorToKeep__)`
             script: [], // Inject custom scripts only if pruning
             link: [], // Inject custom links only if pruning
+            htmlElementClass: null, // this is a string added as a class to the <html> element
             cheerio: {
-                // it use the Cheerio library under the hood, so this is the config passed in the `cheerio.load(__config__)` method
+                // this is the config passed in the `cheerio.load(__config__)` method
                 xmlMode: false,
             },
-            htmlElementClassOnPrune: null, // this is a string added as a class to the <html> tag (cheerio.addClass())
-            hookRenderRoute: true, // Activate in `hook:render:route`
-            hookGeneratePage: true, // Activate in `hook:generate:page`
             types: [
                 // it's possibile to add different rules/types of pruning
                 // array of values: [ 'mobile-detect', 'query-parameters', 'header-exist' ]
                 // ex.: `[ 'query-parameters' ]` force only to check query-parameters values
                 'mobile-detect',
             ],
-            // 👇🏻 Type: `mobile-detect` (always trigger prune during `generate`, if `hookGeneratePage` is `true`)
+            // 👇🏻 Type: `mobile-detect`
             headerName: 'user-agent', // The header-key base for `mobile-detect`, `req.headers[ headerName ]`
             isBot: true, // remove selectors if is a bot
             isAudit: true, // remove selectors if match the `auditUserAgent`
             ignoreBotOrAudit: false, // remove selectors in any case, not depending on Bot or Audit
             auditUserAgent: 'lighthouse', // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
             matchUserAgent: null, // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
-            // 👇🏻 Type: 'query-parameters', (you can also specify routes in the generate process, ex.: `generate: { routes: [ '/?prune=true' ] }` )
+            // 👇🏻 Type: 'query-parameters', (you can also specify routes in the `nuxt.config`, ex.: `{ generate: { routes: [ '/?prune=true' ] } }` )
             queryParamToPrune: [
-                // array of objects (key-value), trigger the pruning if 'query-parameters' is present in `types` and at least one value is matched from the query-parameters, ex. `/?prune=true`
+                // array of objects (key-value), trigger the pruning if 'query-parameters' is present in `types` and at least one value, ex. `/?prune=true`
                 {
                     key: 'prune',
                     value: 'true',
                 },
             ],
-            queryParamToExcludePrune: [], // same as `queryParamToPrune`, exclude the pruning if 'query-parameters' is present in `types` and at least one value is matched from the query-parameters, this is priority over `queryParamToPrune`
-            // 👇🏻 Type: 'header-exist' (always trigger prune during `generate`, if `hookGeneratePage` is `true`)
-            headersToPrune: [], // same as `queryParamToPrune`, but it checks `req.headers` for `key-value`
-            headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `req.headers`, this is priority over `headersToPrune`
+            queryParamToExcludePrune: [], // same as `queryParamToPrune`, exclude the pruning if 'query-parameters' is present in `types` and at least one value is matched, this priority is over than `queryParamToPrune`
+            // 👇🏻 Type: 'header-exist'
+            headersToPrune: [], // same as `queryParamToPrune`, but it checks `req.headers`
+            headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `req.headers`, this priority is over than `headersToPrune`
             // Events, callbacks
             onBeforePrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
             onAfterPrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
@@ -156,7 +148,7 @@ ___
 
 ```
 
-With `link` and `script` it's possibile to add one or more objects ex.:
+With `link` and `script` it's possibile to add one or more objects on the pruned HTML, ex.:
 
 ```javascript
 
@@ -183,6 +175,27 @@ With `link` and `script` it's possibile to add one or more objects ex.:
 ```
 
 > **N.B.:** _the config is only shallow merged, not deep merged_.
+
+___
+
+### Related things you should know
+
+- Usage with `types: [ 'mobile-detect' ]`, load the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library and check if `req.headers[ headerName ]`:
+  - `.is( 'bot' )`;
+  - `.match( options.auditUserAgent )`;
+  - `.match( options.matchUserAgent )`;
+- Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), the plugin has access to `req.headers` only if the project is **running as a server** (ex. `nuxt start`);
+- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to **select and prune** the html.
+
+___
+
+### Advices
+
+- Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *prune* is activated)**;
+- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to always prune HTML (for types `mobile-detect` and/or `header-exist`), but You can disable this behavior by setting the `hookGeneratePage` value to `false` or by using type `query-parameters`;
+- If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
+- This plugin was thought for *Bots / Audits* and uses only few `methods` from the `Cheerio` library;
+- You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
 
 ___
 
