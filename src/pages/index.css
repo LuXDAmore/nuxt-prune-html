@@ -49,6 +49,7 @@
 
     display: block;
     padding: .5em;
+    overflow-x: auto;
     background-color: #f8f8f8;
 
 }
