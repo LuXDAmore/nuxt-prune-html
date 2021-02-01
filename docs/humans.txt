@@ -1,0 +1,13 @@
+/* SITE */
+Last update: 02/01/2021
+Standards: HTML5, CSS3, Javascript
+Components: VueJs
+Software: NuxtJs
+Language: English
+Doctype: HTML5
+
+/* BACKSTAGE */
+HumansTxt Plugin developer: Luca Iaconelli
+From: Faenza, Italy
+Twitter: @luxdamore
+Instagram: https://www.instagram.com/luxdamore
