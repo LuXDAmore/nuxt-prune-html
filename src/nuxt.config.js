@@ -259,7 +259,6 @@ export default {
             __dirname,
             '../docs'
         ),
-        routes: [ '/?prune=1' ],
     },
     /*
     *   * Vue
