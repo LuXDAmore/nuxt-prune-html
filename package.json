@@ -132,16 +132,5 @@
         "stylelint-no-unsupported-browser-features": "^4.1.4",
         "stylelint-order": "^4.1.0",
         "stylelint-scss": "^3.14.0"
-    },
-    "lint-staged": {
-        "*.vue": "npm run lint",
-        "*.{ts,js}": "npm run eslint",
-        "*.{css,scss}": "npm run stylelint"
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-commit": "lint-staged"
-        }
     }
 }
