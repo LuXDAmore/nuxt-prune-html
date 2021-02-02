@@ -4165,9 +4165,9 @@ connect@^3.7.0:
     utils-merge "1.0.1"
 
 consola@^2.10.0, consola@^2.12.1, consola@^2.13.0, consola@^2.15.0, consola@^2.6.0, consola@^2.9.0, consola@latest:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.0.tgz#40fc4eefa4d2f8ef2e2806147f056ea207fcc0e9"
-  integrity sha512-vlcSGgdYS26mPf7qNi+dCisbhiyDnrN1zaRbw3CSuc2wGOMEGGPsp46PdRG5gqXwgtJfjxDkxRNAgRPr1B77vQ==
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.1.tgz#6c9141d97798537551e5b411a1423e39e4a7abd6"
+  integrity sha512-uNINF19d9f1/Pza5aNmQ/JlrmY4uPOW0BxID3Xvw5iOP6diJArUXp+JgcIQ4fR56qV+HB9o/ZRUnrnYd92LxZw==
 
 console-browserify@^1.1.0:
   version "1.2.0"
@@ -9271,9 +9271,9 @@ methods@~1.1.2:
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
 micromark@~2.11.0:
-  version "2.11.2"
-  resolved "https://registry.yarnpkg.com/micromark/-/micromark-2.11.2.tgz#e8b6a05f54697d2d3d27fc89600c6bc40dd05f35"
-  integrity sha512-IXuP76p2uj8uMg4FQc1cRE7lPCLsfAXuEfdjtdO55VRiFO1asrCSQ5g43NmPqFtRwzEnEhafRVzn2jg0UiKArQ==
+  version "2.11.3"
+  resolved "https://registry.yarnpkg.com/micromark/-/micromark-2.11.3.tgz#648e1e7970ea66a946cc2cbc678093ed814f29ed"
+  integrity sha512-oph5YYkVqR2U9OtWBcXYysZMtrdIvi8dfSeyEdr1wFr3Bk6YwI6THosX2AzKnhdps7mVUbXiqhmosu9DcA+xlQ==
   dependencies:
     debug "^4.0.0"
     parse-entities "^2.0.0"
