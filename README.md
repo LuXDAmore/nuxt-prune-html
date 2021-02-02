@@ -1,26 +1,26 @@
 # 🔌⚡ Nuxt Prune HTML
 
 [![Code Quality][quality-src]][quality-href]
+[![Version][npm-version-src]][npm-version-href]
+[![Downloads][npm-downloads-src]][npm-downloads-href]
 [![Dependencies][dependencies-src]][dependencies-href]
 [![Circle CI][circle-ci-src]][circle-ci-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![npm version][npm-version-src]][npm-version-href]
 [![Donate][paypal-donate-src]][paypal-donate-href]
 
 [quality-src]: https://img.shields.io/badge/code%20quality-A-informational?style=flat
 [quality-href]: https://luxdamore.github.io/nuxt-prune-html/
+
+[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-prune-html/latest.svg?style=flat&color=darkorange&label=version
+[npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-prune-html.svg?style=flat&color=darkgreen
+[npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
 
 [dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-darkgreen.svg?style=flat
 [dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
 
 [circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/nuxt-prune-html.svg?style=flat&color=darkgreen
 [circle-ci-href]: https://circleci.com/gh/LuXDAmore/nuxt-prune-html
-
-[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-prune-html.svg?style=flat&color=orange
-[npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
-
-[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-prune-html/latest.svg?style=flat&color=orange
-[npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-prune-html
 
 [paypal-donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
 [paypal-donate-href]: https://www.paypal.me/luxdamore
