@@ -1,0 +1,6 @@
+{
+    "*.vue": "lint",
+    "*.{ts,js}": "eslint",
+    "*.css": "stylelint",
+    "*.scss": "stylelint --syntax=scss"
+}
