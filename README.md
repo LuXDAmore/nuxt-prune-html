@@ -91,10 +91,10 @@ ___
     // nuxt.config.js
     export default {
 
-        // Module - installation
+        // Module - extension
         modules: [ '@luxdamore/nuxt-prune-html' ],
 
-        // Module - default config
+        // Module - default config - lib/config.defaults.js
         pruneHtml: {
             enabled: false, // `true` in production
             hideGenericMessagesInConsole: false, // `false` in production
@@ -107,8 +107,8 @@ ___
                 'script:not([type="application/ld+json"])',
             ],
             selectorsToKeep: null, // disallow pruning of scripts with this class (could be an array of classes), N.B.: each `selectorsToKeep` will be appended to every `selectors`, ex.: `script:not([type="application/ld+json"]):not(__selectorToKeep__)`
-            script: [], // Inject custom scripts only if pruning
-            link: [], // Inject custom links only if pruning
+            link: [], // Inject custom links, only if pruned
+            script: [], // Inject custom scripts, only if pruned
             htmlElementClass: null, // this is a string added as a class to the <html> element
             cheerio: {
                 // this is the config passed in the `cheerio.load(__config__)` method
@@ -116,8 +116,8 @@ ___
             },
             types: [
                 // it's possibile to add different rules/types of pruning
-                // array of values: [ 'mobile-detect', 'query-parameters', 'header-exist' ]
-                // ex.: `[ 'query-parameters' ]` force only to check query-parameters values
+                // array of values: [ 'mobile-detect', 'query-parameters', 'headers-exist' ]
+                // ex.: `[ 'headers-exist' ]` force only to check query-parameters values
                 'mobile-detect',
             ],
             // 👇🏻 Type: `mobile-detect`
@@ -136,7 +136,7 @@ ___
                 },
             ],
             queryParametersToExcludePrune: [], // same as `queryParametersToPrune`, exclude the pruning if 'query-parameters' is present in `types` and at least one value is matched, this priority is over than `queryParametersToPrune`
-            // 👇🏻 Type: 'header-exist'
+            // 👇🏻 Type: 'headers-exist'
             headersToPrune: [], // same as `queryParametersToPrune`, but it checks `req.headers`
             headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `req.headers`, this priority is over than `headersToPrune`
             // Events, callbacks
@@ -197,7 +197,7 @@ ___
 ### Advices
 
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *prune* is activated)**;
-- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to always prune HTML (for types `mobile-detect` and/or `header-exist`), but You can disable this behavior by setting the `hookGeneratePage` value to `false` or by using type `query-parameters`;
+- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to always prune HTML (for types `mobile-detect` and/or `headers-exist`), but You can disable this behavior by setting the `hookGeneratePage` value to `false` or by using type `query-parameters`;
 - If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
 - This plugin was thought for *Bots / Audits* and uses only few `methods` from the `Cheerio` library;
 - You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).

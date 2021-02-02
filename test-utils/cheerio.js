@@ -1,9 +1,9 @@
 /* CHEERIO LIBRARY - FOR ADVANCED TESTING PURPOSE */
 // External
-import cheerio from 'cheerio';
+import { load } from 'cheerio';
 
 // Cheerio
-const $ = cheerio.load(
+const $ = load(
         '<html><head><meta /></head><body><div></div></body></html>'
     )
     // Transform to Cheerio
@@ -47,6 +47,14 @@ const $ = cheerio.load(
 
     }
     // Values
+    , link = [
+        {
+            href: '#',
+            rel: 'preload',
+            as: 'script',
+            position: 'phead',
+        },
+    ]
     , script = [
         {
             src: '#',
@@ -60,26 +68,18 @@ const $ = cheerio.load(
             src: '#',
         },
     ]
-    , link = [
-        {
-            src: '#',
-            rel: 'preload',
-            as: 'script',
-            position: 'phead',
-        },
-    ]
 ;
-
-script.length && script.forEach(
-    item => transformToHtml(
-        item,
-    )
-);
 
 link.length && link.forEach(
     item => transformToHtml(
         item,
         false
+    )
+);
+
+script.length && script.forEach(
+    item => transformToHtml(
+        item,
     )
 );
 
