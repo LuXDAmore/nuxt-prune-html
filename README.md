@@ -154,24 +154,24 @@ With `link` and `script` it's possibile to add one or more objects on the pruned
 
     export default {
         pruneHtml: {
+            link: [
+                {
+                    rel: 'preload',
+                    as: 'script',
+                    href: '/my-custom-lazy-load-for-bots.js',
+                    position: 'phead', // Default value is 'body', other allowed values are: 'phead', 'head' and 'pbody'
+                },
+                {
+                    rel: 'stylesheet',
+                    href: '/my-custom-styles-for-bots.css',
+                    position: 'head',
+                },
+            ],
             script: [
                 {
                     src: '/my-custom-lazy-load-for-bots.js',
                     lazy: true,
                     defer: true,
-                },
-            ],
-            link: [
-                {
-                    src: '/my-custom-lazy-load-for-bots.js',
-                    rel: 'preload',
-                    as: 'script',
-                    position: 'phead', // Default value is 'body', other allowed values are: 'phead', 'head' and 'pbody'
-                },
-                {
-                    src: '/my-custom-styles-for-bots.css',
-                    rel: 'stylesheet',
-                    position: 'head',
                 },
             ],
         },
