@@ -11,7 +11,7 @@ import { JSDOM } from 'jsdom';
 /*
 *   * Package data
 */
-import * as PACKAGE from '../package.json';
+import * as PACKAGE from '../../package.json';
 
 /*
 *   * Set url for the generated website
