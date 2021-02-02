@@ -37,14 +37,14 @@ module.exports = {
     ],
     overrides: [
         {
-            files: [ '**/_test_/*.{j,t}s?(x)' ],
+            files: [ 'tests/**/*.{j,t}s?(x)' ],
             env: {
                 jest: true,
             },
         },
     ],
     rules: {
-        'indent': 'off',
+        indent: 'off',
         'no-console': [
             'warn',
             {
@@ -84,7 +84,7 @@ module.exports = {
             'always',
         ],
         'template-curly-spacing': [
-            'warn', // TODO: Set to warn, waiting for compatibility
+            'warn',
             'always',
         ],
         'array-element-newline': [

@@ -4,32 +4,17 @@
 import { setup, get } from '@nuxtjs/module-test-utils';
 
 /*
-*   * DOM
-*/
-import { JSDOM } from 'jsdom';
-
-/*
-*   * Package data
-*/
-import * as PACKAGE from '../package.json';
-
-/*
 *   * Nuxt configuration
 */
 import config from '../src/nuxt.config';
 
+/*
+*   * Utils
+*/
+import { getDomElementsLength } from './utils/dom-elements';
+
 delete config.server;
 config.dev = false;
-
-/*
-*   * Set url for the generated website
-*/
-const BASE_URL = PACKAGE.homepage.replace(
-        'https://luxdamore.github.io/',
-        '/'
-    )
-    , TIMING = 90000
-;
 
 /*
 *   * Module testing suite
@@ -55,7 +40,6 @@ describe(
                 );
 
             },
-            TIMING
         );
 
         afterAll(
@@ -64,7 +48,6 @@ describe(
                 await nuxt.close();
 
             },
-            TIMING
         );
 
         /*
@@ -75,7 +58,7 @@ describe(
             async() => {
 
                 const html = await get(
-                    BASE_URL
+                    '/'
                 );
 
                 expect(
@@ -85,43 +68,7 @@ describe(
                 );
 
             },
-            TIMING
         );
-
-        /*
-        *   * Utils
-        */
-        const getDomElementsLength = async(
-            selector,
-            ua = null
-        ) => {
-
-            /*
-            *   * HTML
-            */
-            const html = await get(
-                    BASE_URL,
-                    {
-                        headers: (
-                            ua
-                            ? {
-                                'User-Agent': ua,
-                            }
-                            : {}
-                        ),
-                    }
-                )
-                , { window } = new JSDOM(
-                    html
-                ).window
-                , elements = window.document.querySelectorAll(
-                    selector
-                )
-            ;
-
-            return elements.length;
-
-        };
 
         /*
         *   * Humans
@@ -146,7 +93,6 @@ describe(
                         );
 
                     },
-                    TIMING
                 );
 
                 test(
@@ -165,7 +111,6 @@ describe(
                         );
 
                     },
-                    TIMING
                 );
 
             }
@@ -197,7 +142,6 @@ describe(
                         );
 
                     },
-                    TIMING
                 );
 
                 test(
@@ -217,7 +161,6 @@ describe(
                         );
 
                     },
-                    TIMING
                 );
 
             }
