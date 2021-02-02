@@ -208,7 +208,7 @@ ___
 
 1. **Clone** this repository:
    - `git clone https://github.com/LuXDAmore/nuxt-prune-html.git`;
-2. **Install** the dependencies
+2. **Install** the dependencies:
    - `yarn install` (or `npm install`);
 3. **Start** the development server:
    - `yarn dev` (or `npm run dev`);
