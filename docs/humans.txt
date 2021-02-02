@@ -1,5 +1,5 @@
 /* SITE */
-Last update: 02/01/2021
+Last update: 02/02/2021
 Standards: HTML5, CSS3, Javascript
 Components: VueJs
 Software: NuxtJs
