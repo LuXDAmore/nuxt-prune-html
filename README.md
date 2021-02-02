@@ -43,7 +43,7 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
   - Match a **bot**;
   - Match an **audit**;
 - Prune based on **headers values** (*useful for Lambdas*);
-- Prune based on **query parameters** (*useful during navigation or generation, hybrid-experience*).
+- Prune based on **query parameters** (*useful during navigation or generation,  for an hybrid-experience*).
 
 ### Pro et contra
 
@@ -51,7 +51,7 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
 
 **Cons.:**
 
-- no `SPA routing`;
+- no `SPA routing` on `client-side`;
 - no `<client-only>` [components](https://nuxtjs.org/api/components-client-only/);
 - can break `lazy-load` for images.
 
@@ -128,16 +128,16 @@ ___
             auditUserAgent: 'lighthouse', // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
             matchUserAgent: null, // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
             // 👇🏻 Type: 'query-parameters', (you can also specify routes in the `nuxt.config`, ex.: `{ generate: { routes: [ '/?prune=true' ] } }` )
-            queryParamToPrune: [
+            queryParametersToPrune: [
                 // array of objects (key-value), trigger the pruning if 'query-parameters' is present in `types` and at least one value, ex. `/?prune=true`
                 {
                     key: 'prune',
                     value: 'true',
                 },
             ],
-            queryParamToExcludePrune: [], // same as `queryParamToPrune`, exclude the pruning if 'query-parameters' is present in `types` and at least one value is matched, this priority is over than `queryParamToPrune`
+            queryParametersToExcludePrune: [], // same as `queryParametersToPrune`, exclude the pruning if 'query-parameters' is present in `types` and at least one value is matched, this priority is over than `queryParametersToPrune`
             // 👇🏻 Type: 'header-exist'
-            headersToPrune: [], // same as `queryParamToPrune`, but it checks `req.headers`
+            headersToPrune: [], // same as `queryParametersToPrune`, but it checks `req.headers`
             headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `req.headers`, this priority is over than `headersToPrune`
             // Events, callbacks
             onBeforePrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
@@ -167,6 +167,11 @@ With `link` and `script` it's possibile to add one or more objects on the pruned
                     rel: 'preload',
                     as: 'script',
                     position: 'phead', // Default value is 'body', other allowed values are: 'phead', 'head' and 'pbody'
+                },
+                {
+                    src: '/my-custom-styles-for-bots.css',
+                    rel: 'stylesheet',
+                    position: 'head',
                 },
             ],
         },
