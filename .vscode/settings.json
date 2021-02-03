@@ -63,6 +63,7 @@
     "cSpell.ignorePaths": [
         ".vscode",
         ".git",
+        ".nuxt",
         "coverage",
         "dist",
         "ssr",
