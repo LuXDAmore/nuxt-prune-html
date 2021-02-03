@@ -1,20 +1,12 @@
 /*
 *   * Test utils
 */
-import { setup, get } from '@nuxtjs/module-test-utils';
-
-/*
-*   * Nuxt configuration
-*/
-import config from '../src/nuxt.config';
+import { setupTest } from '@nuxt/test-utils';
 
 /*
 *   * Utils
 */
-import { getDomElementsLength } from './utils/dom-elements';
-
-delete config.server;
-config.dev = false;
+import { getDomElements, BASE_URL } from './utils/dom';
 
 /*
 *   * Module testing suite
@@ -24,30 +16,19 @@ describe(
     () => {
 
         /*
-        *   * Nuxt
+        *   * Nuxt setup
         */
-        let nuxt;
-
-        beforeAll(
-            async() => {
-
-                (
-                    { nuxt } = (
-                        await setup(
-                            config
-                        )
-                    )
-                );
-
-            },
-        );
-
-        afterAll(
-            async() => {
-
-                await nuxt.close();
-
-            },
+        setupTest(
+           {
+                server: true,
+                testDir: __dirname,
+                fixture: '../src',
+                config: {
+                    pruneHtml: {
+                        enabled: true,
+                    },
+                },
+            }
         );
 
         /*
@@ -57,113 +38,15 @@ describe(
             'render',
             async() => {
 
-                const html = await get(
-                    '/'
+                const { body } = await getDomElements(
+                    BASE_URL
                 );
 
-                expect(
-                    html
-                ).toContain(
+                expect( body ).toContain(
                     'Prune HTML'
                 );
 
             },
-        );
-
-        /*
-        *   * Humans
-        */
-        describe(
-            'human',
-            () => {
-
-                test(
-                    'preload-scripts',
-                    async() => {
-
-                        const elements = await getDomElementsLength(
-                            'link[rel="preload"][as="script"]'
-                        );
-
-                        // Test
-                        expect(
-                            elements
-                        ).toBeGreaterThanOrEqual(
-                            0
-                        );
-
-                    },
-                );
-
-                test(
-                    'scripts',
-                    async() => {
-
-                        const elements = await getDomElementsLength(
-                            'script:not([type="application/ld+json"])',
-                        );
-
-                        // Test
-                        expect(
-                            elements
-                        ).toBeGreaterThanOrEqual(
-                            0
-                        );
-
-                    },
-                );
-
-            }
-        );
-
-        /*
-        *   * Bots
-        */
-        describe(
-            'bot',
-            () => {
-
-                const USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
-
-                test(
-                    'preload-scripts',
-                    async() => {
-
-                        const elements = await getDomElementsLength(
-                            'link[rel="preload"][as="script"]',
-                            USER_AGENT
-                        );
-
-                        // Test
-                        expect(
-                            elements
-                        ).toEqual(
-                            0
-                        );
-
-                    },
-                );
-
-                test(
-                    'scripts',
-                    async() => {
-
-                        const elements = await getDomElementsLength(
-                            'script:not([type="application/ld+json"])',
-                            USER_AGENT
-                        );
-
-                        // Test
-                        expect(
-                            elements
-                        ).toEqual(
-                            0
-                        );
-
-                    },
-                );
-
-            }
         );
 
     }

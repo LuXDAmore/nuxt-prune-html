@@ -81,7 +81,6 @@ const isProduction = process.env.NODE_ENV !== 'development'
         '@nuxtjs/eslint-module',
         '@nuxtjs/stylelint-module',
         '@nuxtjs/pwa',
-        '@luxdamore/nuxt-humans-txt',
         'nuxt-compress',
         '@nuxtjs/sitemap',
     ]
@@ -94,10 +93,17 @@ const isProduction = process.env.NODE_ENV !== 'development'
     ]
 ;
 
+// FIXME: there's a problem during tests
+process.env.NODE_ENV !== 'test' && buildModules.push(
+    '@luxdamore/nuxt-humans-txt'
+);
+
 // Module installation
 modules.push( module );
 
-// Nuxt Config
+/*
+*   * Nuxt config
+*/
 export default {
     target: 'static',
     modern: true,

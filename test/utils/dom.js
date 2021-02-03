@@ -1,7 +1,7 @@
 /*
 *   * Test utils
 */
-import { get } from '@nuxtjs/module-test-utils';
+import { get } from '@nuxt/test-utils';
 
 /*
 *   * DOM
@@ -24,16 +24,17 @@ const BASE_URL = PACKAGE.homepage.replace(
 /*
 *   * Utils
 */
-async function getDomElementsLength(
-    selector,
+async function getDomElements(
+    url = '/',
+    selector = '*',
     ua = null
 ) {
 
     /*
     *   * HTML
     */
-    const html = await get(
-            BASE_URL,
+    const { body } = await get(
+            url,
             {
                 headers: (
                     ua
@@ -44,16 +45,28 @@ async function getDomElementsLength(
                 ),
             }
         )
-        , { window } = new JSDOM(
-            html
-        ).window
-        , elements = window.document.querySelectorAll(
+        , { window: { document } } = new JSDOM(
+            body
+        )
+        , { length } = document.querySelectorAll(
             selector
         )
     ;
 
-    return elements.length;
+    /*
+    *   * Body and result of the selector
+    */
+    return {
+        body,
+        length,
+    };
 
 }
 
-export { getDomElementsLength };
+/*
+*   * Exports
+*/
+export {
+    getDomElements,
+    BASE_URL,
+};
