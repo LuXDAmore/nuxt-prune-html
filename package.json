@@ -68,7 +68,7 @@
     },
     "dependencies": {
         "cheerio": "^1.0.0-rc.5",
-        "consola": "latest",
+        "consola": "^2.15.2",
         "mobile-detect": "^1.4.4"
     },
     "devDependencies": {
