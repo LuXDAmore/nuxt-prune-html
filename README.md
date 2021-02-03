@@ -59,10 +59,10 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
 
 **Pros.:**
 
-- some of these features aren't "used by" a bot/audit, so you don't really need them:
-  - _bots doesn't handle `SPA routing`;
-  - [`<client-only> components`](https://nuxtjs.org/api/components-client-only/) could lead in a slower TTI;
-  - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) can be replaced by a [static placeholder](https://nuxtjs.org/api/components-client-only/);
+- some of these features **aren't "used by"** a bot/audit, so you don't really need them:
+  - bots doesn't handle `SPA routing`;
+  - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) could lead in a slower TTI;
+  - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) can contain a [static placeholder](https://nuxtjs.org/api/components-client-only/);
 - `lazy-load` for images can be fixed with a [native attribute](https://web.dev/native-lazy-loading/), or with a custom `script`/`selectorToKeep` (_check the configuration_);
 - `hydration` **decrease** performance, so it's ok to prune it for `bots or audits`;
 - less HTML, assets and resources are served to browsers and clients;
@@ -203,7 +203,7 @@ ___
 
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *prune* is activated)**;
 - If you `generate` your site it's not possibile to check *req.headers*, so, I choose to always prune HTML (for types `mobile-detect` and/or `headers-exist`), but You can disable this behavior by setting the `hookGeneratePage` value to `false` or by using type `query-parameters`;
-- If you use some `<client-only>` components, you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
+- If you use [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
 - This plugin was thought for *Bots / Audits* and uses only few `methods` from the `Cheerio` library;
 - You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
 
