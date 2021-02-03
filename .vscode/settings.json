@@ -58,24 +58,19 @@
     },
     "peacock.color": "#42b883",
     // Dictionary
+    "cSpell.language": "en,it",
+    "cSpell.allowCompoundWords": true,
     "cSpell.ignorePaths": [
         ".vscode",
+        ".git",
+        "coverage",
         "dist",
         "ssr",
         "node_modules",
-        "bower_components",
-        ".git"
-    ],
-    "cSpell.language": "en,it",
-    "cSpell.allowCompoundWords": true,
-    "cSpell.ignoreWords": [
-        "pbody",
-        "phead"
+        "bower_components"
     ],
     "cSpell.words": [
-        "audiotsm",
-        "jabrils",
-        "numpy",
-        "scipy"
+        "pbody",
+        "phead"
     ]
 }
