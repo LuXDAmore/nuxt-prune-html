@@ -51,18 +51,23 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
 
 **Cons.:**
 
-- no `SPA routing` on `client-side`;
-- no `<client-only>` [components](https://nuxtjs.org/api/components-client-only/);
+- no [`SPA routing`](https://nuxtjs.org/docs/2.x/concepts/server-side-rendering/#server-side-rendering-steps-with-nuxtjs) on `client-side`;
+- no [`hydration`](https://ssr.vuejs.org/guide/hydration.html) on `client-side` for **bots and audits**:
+  - ex. [`vue-lazy-hydration`](https://github.com/maoberlehner/vue-lazy-hydration), _hydrateOnInteraction_, _hydrateWhenIdle_ and _hydrateWhenVisible_ are **javascript client-side code** so they're pruned out;
+- no [`<client-only>` components](https://nuxtjs.org/api/components-client-only/);
 - can break `lazy-load` for images.
 
 **Pros.:**
 
-- some of these features aren't "used by" a bot/audit, so you don't really need them (ex. _bots doesn't handle `SPA routing` and `<client-only> components` could lead in a slower TTI_);
-- `lazy-load` for images can be fixed with a [native-attribute](https://web.dev/native-lazy-loading/), or with a custom `script`/`selectorToKeep` (_check the configuration_);
-- `<client-only>` [components](https://nuxtjs.org/api/components-client-only/) can be replaced by a static [placeholder](https://nuxtjs.org/api/components-client-only/);
+- some of these features aren't "used by" a bot/audit, so you don't really need them:
+  - _bots doesn't handle `SPA routing`;
+  - [`<client-only> components`](https://nuxtjs.org/api/components-client-only/) could lead in a slower TTI;
+  - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) can be replaced by a [static placeholder](https://nuxtjs.org/api/components-client-only/);
+- `lazy-load` for images can be fixed with a [native attribute](https://web.dev/native-lazy-loading/), or with a custom `script`/`selectorToKeep` (_check the configuration_);
+- `hydration` **decrease** performance, so it's ok to prune it for `bots or audits`;
 - less HTML, assets and resources are served to browsers and clients;
 - bot/audit only have the Javascript they need;
-- with less assets to download, the number of urls crawled should be widely boosted;
+- with **less assets** to download, the number of urls crawled are **widely boosted**;
 - bots, [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/), [Google Measure](https://web.dev/measure/) and [Lighthouse Audit](https://developers.google.com/web/tools/lighthouse) are already pruned by the plugin with the default configuration;
 - faster [web-vitals](https://web.dev/vitals/), faster TTI, faster FCP, faster FMP, **faster all**.
 
