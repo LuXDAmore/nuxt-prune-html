@@ -24,12 +24,14 @@
 
 [paypal-donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
 [paypal-donate-href]: https://www.paypal.me/luxdamore
+[patreon-donate-href]: https://www.patreon.com/luxdamore
+[kofi-donate-href]: https://ko-fi.com/luxdamore
 
-> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots by removing all the scripts with dynamic rendering.
+> Nuxt module to prune html before sending it to the browser (it removes elements matching CSS selector(s)), useful for boosting performance showing a different HTML for bots/audits by removing all the scripts with dynamic rendering.
 
 ## 💘 Motivation
 
-Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node, has everything it needs already injected (in the HTML, ex. styles). So, usually, for a bot or for a human, the website its almost visually the same without Javascript.
+Due to the versatility of Nuxt (and of the SSR in general), a website generated (or served) via node server, has everything it needs already injected (in the HTML, ex. styles). So, usually, for a bot or for a human, the website its almost visually the same without Javascript.
 
 This library is born to remove the scripts injected in the HTML **only** if a visitor is a **Bot** (or a "**Performance Audit**", ex. **Lighthouse**).
 This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of **~95** in **performance** during an *Audit* because it [cheats various scenarios](https://web.dev/lighthouse-performance/).
@@ -42,8 +44,8 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
   - Match the **user agent**;
   - Match a **bot**;
   - Match an **audit**;
-- Prune based on **headers values** (*useful for Lambdas*);
-- Prune based on **query parameters** (*useful during navigation or generation,  for an hybrid-experience*).
+- Prune based on **headers values** (*useful in Lambdas*);
+- Prune based on **query parameters** (*useful during navigation or generation, for an hybrid-experience*).
 
 ### Pro et contra
 
@@ -51,7 +53,7 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
 
 **Cons.:**
 
-- no [`SPA routing`](https://nuxtjs.org/docs/2.x/concepts/server-side-rendering/#server-side-rendering-steps-with-nuxtjs) on `client-side`;
+- no [`SPA routing`](https://nuxtjs.org/docs/2.x/concepts/server-side-rendering/#server-side-rendering-steps-with-nuxtjs) on `client-side` for **bots and audits**;
 - no [`hydration`](https://ssr.vuejs.org/guide/hydration.html) on `client-side` for **bots and audits**:
   - ex. [`vue-lazy-hydration`](https://github.com/maoberlehner/vue-lazy-hydration), _hydrateOnInteraction_, _hydrateWhenIdle_ and _hydrateWhenVisible_ are **javascript client-side code** so they're pruned out;
 - no [`<client-only>` components](https://nuxtjs.org/api/components-client-only/);
@@ -99,7 +101,7 @@ ___
         // Module - extension
         modules: [ '@luxdamore/nuxt-prune-html' ],
 
-        // Module - default config - lib/config.defaults.js
+        // Module - default config
         pruneHtml: {
             enabled: false, // `true` in production
             hideGenericMessagesInConsole: false, // `false` in production
@@ -144,7 +146,7 @@ ___
             // 👇🏻 Type: 'headers-exist'
             headersToPrune: [], // same as `queryParametersToPrune`, but it checks `req.headers`
             headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `req.headers`, this priority is over than `headersToPrune`
-            // Events, callbacks
+            // Emitted events for callbacks methods
             onBeforePrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
             onAfterPrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
         },
@@ -192,17 +194,17 @@ ___
 
 - Usage with `types: [ 'mobile-detect' ]`, load the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library and check if `req.headers[ headerName ]`:
   - `.is( 'bot' )`;
-  - `.match( options.auditUserAgent )`;
-  - `.match( options.matchUserAgent )`;
+  - and/or `.match( options.auditUserAgent )`;
+  - and/or `.match( options.matchUserAgent )`;
 - Nuxt [hooks](https://nuxtjs.org/api/configuration-hooks/), the plugin has access to `req.headers` only if the project is **running as a server** (ex. `nuxt start`);
-- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to **select and prune** the html.
+- It use [Cheerio](https://github.com/cheeriojs/cheerio), *jQuery for servers*, library to **filter and prune** the html.
 
 ___
 
 ### Advices
 
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *prune* is activated)**;
-- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to always prune HTML (for types `mobile-detect` and/or `headers-exist`), but You can disable this behavior by setting the `hookGeneratePage` value to `false` or by using type `query-parameters`;
+- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to **always prune** (for types `mobile-detect` and/or `headers-exist`), but You can disable this behavior by setting `hookGeneratePage` to `false` (or by using type `query-parameters`);
 - If you use [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
 - This plugin was thought for *Bots / Audits* and uses only few `methods` from the `Cheerio` library;
 - You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
@@ -243,8 +245,8 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 #### 💸 Are you feeling generous today?
 
-If You want to share a beer, we can be really good friends
+If You want to share a beer, we can be really good friends 😄
 
-__[Paypal][paypal-donate-href] // [Patreon](https://www.patreon.com/luxdamore) // [Ko-fi](https://ko-fi.com/luxdamore)__
+__[Paypal][paypal-donate-href] // [Patreon][patreon-donate-href] // [Ko-fi][kofi-donate-href]__
 
 > ☀ _It's always a good day to be magnanimous_ - cit.
