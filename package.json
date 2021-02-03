@@ -47,7 +47,7 @@
         "access": "public"
     },
     "scripts": {
-        "cheerio": "node tests/utils/cheerio.js",
+        "cheerio": "node test/utils/cheerio.js",
         "serve": "nuxt -o src",
         "dev": "nuxt -o src",
         "build": "nuxt build src",

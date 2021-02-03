@@ -37,7 +37,7 @@ module.exports = {
     ],
     overrides: [
         {
-            files: [ 'tests/**/*.{j,t}s?(x)' ],
+            files: [ 'test/**/*.{j,t}s?(x)' ],
             env: {
                 jest: true,
             },
