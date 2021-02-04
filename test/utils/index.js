@@ -14,12 +14,14 @@ import { JSDOM } from 'jsdom';
 import * as PACKAGE from '../../package.json';
 
 /*
-*   * Set url for the generated website
+*   * Data
 */
 const BASE_URL = PACKAGE.homepage.replace(
-    'https://luxdamore.github.io/',
-    '/'
-);
+        'https://luxdamore.github.io/',
+        '/'
+    )
+    , BOT_USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+;
 
 /*
 *   * Utils
@@ -27,7 +29,8 @@ const BASE_URL = PACKAGE.homepage.replace(
 async function getDomElements(
     url = '/',
     selector = '*',
-    ua = null
+    headerValue = null,
+    headerName = 'User-Agent'
 ) {
 
     /*
@@ -37,9 +40,9 @@ async function getDomElements(
             url,
             {
                 headers: (
-                    ua
+                    headerValue
                     ? {
-                        'User-Agent': ua,
+                        [ headerName ]: headerValue,
                     }
                     : {}
                 ),
@@ -48,7 +51,7 @@ async function getDomElements(
         , { window: { document } } = new JSDOM(
             body
         )
-        , { length } = document.querySelectorAll(
+        , { length = 0 } = document.querySelectorAll(
             selector
         )
     ;
@@ -69,4 +72,4 @@ async function getDomElements(
 export {
     getDomElements,
     BASE_URL,
-};
+    BOT_USER_AGENT,};

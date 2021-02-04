@@ -6,7 +6,11 @@ import { setupTest } from '@nuxt/test-utils';
 /*
 *   * Utils
 */
-import { getDomElements, BASE_URL } from './utils/dom';
+import {
+    getDomElements,
+    BASE_URL,
+
+} from './utils';
 
 /*
 *   * Module testing suite
@@ -47,6 +51,103 @@ describe(
                 );
 
             },
+
+        );
+
+        /*
+        *   * Humans
+        */
+        describe(
+            'human',
+            () => {
+
+                test(
+                    'preload-scripts',
+                    async() => {
+
+                        const { length } = await getDomElements(
+                            BASE_URL,
+                            'link[rel="preload"][as="script"]'
+                        );
+
+                        // Test
+                        expect( length ).toBeGreaterThanOrEqual(
+                            1
+                        );
+
+                    },
+
+                );
+
+                test(
+                    'scripts',
+                    async() => {
+
+                        const { length } = await getDomElements(
+                            BASE_URL,
+                            'script:not([type="application/ld+json"])',
+                        );
+
+                        // Test
+                        expect( length ).toBeGreaterThanOrEqual(
+                            1
+                        );
+
+                    },
+
+                );
+
+            }
+        );
+
+        /*
+        *   * Bots
+        */
+        describe(
+            'bot',
+            () => {
+
+                const USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
+
+                test(
+                    'preload-scripts',
+                    async() => {
+
+                        const { length } = await getDomElements(
+                            BASE_URL,
+                            'link[rel="preload"][as="script"]',
+                            USER_AGENT
+                        );
+
+                        // Test
+                        expect( length ).toEqual(
+                            0
+                        );
+
+                    },
+
+                );
+
+                test(
+                    'scripts',
+                    async() => {
+
+                        const { length } = await getDomElements(
+                            BASE_URL,
+                            'script:not([type="application/ld+json"])',
+                            USER_AGENT
+                        );
+
+                        // Test
+                        expect( length ).toEqual(
+                            0
+                        );
+
+                    },
+
+                );
+
+            }
         );
 
     }
