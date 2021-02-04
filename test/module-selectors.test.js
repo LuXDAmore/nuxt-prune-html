@@ -16,7 +16,7 @@ import {
 *   * Module testing suite
 */
 describe(
-    'module',
+    'module-selectors',
     () => {
 
         /*
@@ -25,6 +25,7 @@ describe(
         setupTest(
            {
                 server: true,
+                setupTimeout: 99999,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {
@@ -72,82 +73,72 @@ describe(
         );
 
         /*
-        *   * Scripts
+        *   * Selectors
         */
-        describe(
-            'selectors',
-            () => {
+        test(
+            'selectors-to-keep',
+            async() => {
 
-                test(
-                    'selectors-to-keep',
-                    async() => {
-
-                        const { length } = await getDomElements(
-                            BASE_URL,
-                            'script[src="/scripts/keep-me.js"]',
-                            BOT_USER_AGENT
-                        );
-
-                        // Test
-                        expect( length ).toEqual(
-                            1
-                        );
-
-                    },
-
+                const { length } = await getDomElements(
+                    BASE_URL,
+                    'script[src="/scripts/keep-me.js"]',
+                    BOT_USER_AGENT
                 );
 
-                test(
-                    'scripts-and-links-injected',
-                    async() => {
-
-                        const { length } = await getDomElements(
-                            BASE_URL,
-                            '.nuxt-prune--injected',
-                            BOT_USER_AGENT
-                        );
-
-                        // Test
-                        expect( length ).toEqual(
-                            4
-                        );
-
-                    },
-
+                // Test
+                expect( length ).toEqual(
+                    1
                 );
 
-                test(
-                    'scripts-and-links-positions',
-                    async() => {
+            },
+        );
 
-                        const { elements } = await getDomElements(
-                            BASE_URL,
-                            '.nuxt-prune--injected',
-                            BOT_USER_AGENT
-                        );
+        test(
+            'scripts-and-links-injected',
+            async() => {
 
-                        // Test
-                        expect( elements.head.firstChild.tagName === 'LINK' ).toEqual(
-                            true
-                        );
-
-                        expect( elements.head.lastChild.tagName === 'SCRIPT' ).toEqual(
-                            true
-                        );
-
-                        expect( elements.body.firstChild.tagName === 'SCRIPT' ).toEqual(
-                            true
-                        );
-
-                        expect( elements.body.lastChild.tagName === 'SCRIPT' ).toEqual(
-                            true
-                        );
-
-                    },
-
+                const { length } = await getDomElements(
+                    BASE_URL,
+                    '.nuxt-prune--injected',
+                    BOT_USER_AGENT
                 );
 
-            }
+                // Test
+                expect( length ).toEqual(
+                    4
+                );
+
+            },
+        );
+
+        test(
+            'scripts-and-links-positions',
+            async() => {
+
+                const { elements } = await getDomElements(
+                    BASE_URL,
+                    'html',
+                    BOT_USER_AGENT
+                );
+
+                // Test
+                expect( elements.head.firstChild.tagName === 'LINK' ).toEqual(
+                    true
+                );
+
+                expect( elements.head.lastChild.tagName === 'SCRIPT' ).toEqual(
+                    true
+                );
+
+                expect( elements.body.firstChild.tagName === 'SCRIPT' ).toEqual(
+                    true
+                );
+
+                expect( elements.body.lastChild.tagName === 'SCRIPT' ).toEqual(
+                    true
+                );
+
+            },
         );
 
     }

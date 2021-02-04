@@ -16,7 +16,7 @@ import {
 *   * Module testing suite
 */
 describe(
-    'module',
+    'module-headers',
     () => {
 
         /*
@@ -25,6 +25,8 @@ describe(
         setupTest(
            {
                 server: true,
+                setupTimeout: 99999,
+                waitFor: 99999,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {
@@ -49,51 +51,44 @@ describe(
         /*
         *   * Headers
         */
-        describe(
-            'headers',
-            () => {
+        test(
+            'custom-name',
+            async() => {
 
-                test(
-                    'custom-name',
-                    async() => {
-
-                        const { length } = await getDomElements(
-                            BASE_URL,
-                            'script:not([type="application/ld+json"])',
-                            BOT_USER_AGENT,
-                            'custom-name'
-                        );
-
-                        // Test
-                        expect( length ).toEqual(
-                            0
-                        );
-
-                    },
-
+                const { length } = await getDomElements(
+                    BASE_URL,
+                    'script:not([type="application/ld+json"])',
+                    BOT_USER_AGENT,
+                    'custom-name'
                 );
 
-                test(
-                    'exists',
-                    async() => {
-
-                        const { length } = await getDomElements(
-                            BASE_URL,
-                            'script:not([type="application/ld+json"])',
-                            'true',
-                            'prune',
-                        );
-
-                        // Test
-                        expect( length ).toEqual(
-                            0
-                        );
-
-                    },
-
+                // Test
+                expect( length ).toEqual(
+                    0
                 );
 
-            }
+            },
+
+        );
+
+        test(
+            'exists',
+            async() => {
+
+                const { length } = await getDomElements(
+                    BASE_URL,
+                    'script:not([type="application/ld+json"])',
+                    'true',
+                    'prune',
+                );
+
+                // Test
+                expect( length ).toEqual(
+                    0
+                );
+
+            },
+
         );
 
     }
