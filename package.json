@@ -62,7 +62,7 @@
         "stylelint-fix": "stylelint src/**/*.css --fix",
         "lint": "yarn eslint && yarn stylelint",
         "lint-fix": "yarn eslint-fix && yarn stylelint-fix",
-        "test": "jest",
+        "test": "jest --force-exit",
         "prerelease": "yarn lint && yarn test && yarn generate",
         "release": "standard-version && git push --follow-tags && yarn publish"
     },

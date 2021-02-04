@@ -25,10 +25,10 @@ describe(
         setupTest(
            {
                 server: true,
-                setupTimeout: 99999,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {
+                    dev: false,
                     head: {
                         script: [
                             {
@@ -115,26 +115,30 @@ describe(
             'scripts-and-links-positions',
             async() => {
 
-                const { elements } = await getDomElements(
-                    BASE_URL,
-                    'html',
-                    BOT_USER_AGENT
-                );
+                const { elements: [ html ] } = await getDomElements(
+                        BASE_URL,
+                        'html',
+                        BOT_USER_AGENT
+                    )
+                    // HTML
+                    , head = html.querySelector( 'head' )
+                    , body = html.querySelector( 'body' )
+                ;
 
                 // Test
-                expect( elements.head.firstChild.tagName === 'LINK' ).toEqual(
+                expect( head.firstChild.tagName === 'LINK' ).toEqual(
                     true
                 );
 
-                expect( elements.head.lastChild.tagName === 'SCRIPT' ).toEqual(
+                expect( head.lastChild.tagName === 'SCRIPT' ).toEqual(
                     true
                 );
 
-                expect( elements.body.firstChild.tagName === 'SCRIPT' ).toEqual(
+                expect( body.firstChild.tagName === 'SCRIPT' ).toEqual(
                     true
                 );
 
-                expect( elements.body.lastChild.tagName === 'SCRIPT' ).toEqual(
+                expect( body.lastChild.tagName === 'SCRIPT' ).toEqual(
                     true
                 );
 

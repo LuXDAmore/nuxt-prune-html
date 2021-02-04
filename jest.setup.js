@@ -1,4 +1,3 @@
 /* global jest */
 
-jest.setTimeout( 99999 );
-jest.useFakeTimers();
+jest.setTimeout( 60000 );

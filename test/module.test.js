@@ -9,7 +9,7 @@ import { setupTest } from '@nuxt/test-utils';
 import {
     getDomElements,
     BASE_URL,
-
+    BOT_USER_AGENT,
 } from './utils';
 
 /*
@@ -25,10 +25,10 @@ describe(
         setupTest(
            {
                 server: true,
-                setupTimeout: 99999,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {
+                    dev: false,
                     pruneHtml: {
                         enabled: true,
                     },
@@ -114,8 +114,6 @@ describe(
             'is-bot',
             () => {
 
-                const USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)';
-
                 test(
                     'preload-scripts',
                     async() => {
@@ -123,7 +121,7 @@ describe(
                         const { length } = await getDomElements(
                             BASE_URL,
                             'link[rel="preload"][as="script"]',
-                            USER_AGENT
+                            BOT_USER_AGENT
                         );
 
                         // Test
@@ -142,7 +140,7 @@ describe(
                         const { length } = await getDomElements(
                             BASE_URL,
                             'script:not([type="application/ld+json"])',
-                            USER_AGENT
+                            BOT_USER_AGENT
                         );
 
                         // Test
@@ -161,8 +159,6 @@ describe(
             'is-audit',
             () => {
 
-                const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/61.0.3116.0 Safari/537.36 Chrome-Lighthouse';
-
                 test(
                     'preload-scripts',
                     async() => {
@@ -170,7 +166,7 @@ describe(
                         const { length } = await getDomElements(
                             BASE_URL,
                             'link[rel="preload"][as="script"]',
-                            USER_AGENT
+                            BOT_USER_AGENT
                         );
 
                         // Test
@@ -189,7 +185,7 @@ describe(
                         const { length } = await getDomElements(
                             BASE_URL,
                             'script:not([type="application/ld+json"])',
-                            USER_AGENT
+                            BOT_USER_AGENT
                         );
 
                         // Test

@@ -25,11 +25,10 @@ describe(
         setupTest(
            {
                 server: true,
-                setupTimeout: 99999,
-                waitFor: 99999,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {
+                    dev: false,
                     pruneHtml: {
                         enabled: true,
                         headerNameForDefaultDetection: 'custom-name',
