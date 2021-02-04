@@ -38,20 +38,26 @@ describe(
         /*
         *   * Tests
         */
-        test(
+        describe(
             'render',
-            async() => {
+            () => {
 
-                const { body } = await getDomElements(
-                    BASE_URL
+                test(
+                    'run',
+                    async() => {
+
+                        const { body } = await getDomElements(
+                            BASE_URL
+                        );
+
+                        expect( body ).toContain(
+                            'Prune HTML'
+                        );
+
+                    },
                 );
 
-                expect( body ).toContain(
-                    'Prune HTML'
-                );
-
-            },
-
+            }
         );
 
         /*

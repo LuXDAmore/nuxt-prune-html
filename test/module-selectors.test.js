@@ -116,6 +116,37 @@ describe(
 
                 );
 
+                test(
+                    'scripts-and-links-positions',
+                    async() => {
+
+                        const { elements } = await getDomElements(
+                            BASE_URL,
+                            '.nuxt-prune--injected',
+                            BOT_USER_AGENT
+                        );
+
+                        // Test
+                        expect( elements.head.firstChild.tagName === 'LINK' ).toEqual(
+                            true
+                        );
+
+                        expect( elements.head.lastChild.tagName === 'SCRIPT' ).toEqual(
+                            true
+                        );
+
+                        expect( elements.body.firstChild.tagName === 'SCRIPT' ).toEqual(
+                            true
+                        );
+
+                        expect( elements.body.lastChild.tagName === 'SCRIPT' ).toEqual(
+                            true
+                        );
+
+                    },
+
+                );
+
             }
         );
 

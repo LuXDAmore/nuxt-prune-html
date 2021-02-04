@@ -61,7 +61,7 @@ describe(
                             BASE_URL,
                             'script:not([type="application/ld+json"])',
                             BOT_USER_AGENT,
-'custom-name'
+                            'custom-name'
                         );
 
                         // Test

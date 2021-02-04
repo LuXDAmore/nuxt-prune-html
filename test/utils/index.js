@@ -51,7 +51,7 @@ async function getDomElements(
         , { window: { document } } = new JSDOM(
             body
         )
-        , { length = 0 } = document.querySelectorAll(
+        , elements = document.querySelectorAll(
             selector
         )
     ;
@@ -61,7 +61,8 @@ async function getDomElements(
     */
     return {
         body,
-        length,
+        elements,
+        length: elements && elements.length ? elements.length : 0,
     };
 
 }
@@ -72,4 +73,5 @@ async function getDomElements(
 export {
     getDomElements,
     BASE_URL,
-    BOT_USER_AGENT,};
+    BOT_USER_AGENT,
+ };
