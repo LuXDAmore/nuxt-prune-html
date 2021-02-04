@@ -73,5 +73,8 @@
     "cSpell.words": [
         "pbody",
         "phead"
+    ],
+    "cSpell.ignoreWords": [
+        "khtml"
     ]
 }
