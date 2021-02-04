@@ -6,10 +6,7 @@ import { setupTest } from '@nuxt/test-utils';
 /*
 *   * Utils
 */
-import {
-    getDomElements,
-    BASE_URL,
-} from './utils';
+import { getDomElements, BASE_URL } from './utils';
 
 /*
 *   * Module testing suite
