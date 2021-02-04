@@ -123,17 +123,17 @@ ___
             },
             types: [
                 // it's possibile to add different rules/types of pruning
-                // array of values: [ 'mobile-detect', 'query-parameters', 'headers-exist' ]
+                // array of values: [ 'default-detect', 'query-parameters', 'headers-exist' ]
                 // ex.: `[ 'headers-exist' ]` force only to check query-parameters values
-                'mobile-detect',
+                'default-detect',
             ],
-            // 👇🏻 Type: `mobile-detect`
-            headerName: 'user-agent', // The header-key base for `mobile-detect`, `req.headers[ headerName ]`
+            // 👇🏻 Type: `default-detect`
+            headerNameForDefaultDetection: 'user-agent', // The header-key base for `default-detect`, `req.headers[ headerNameForDefaultDetection ]`
             isBot: true, // remove selectors if is a bot
             isAudit: true, // remove selectors if match the `auditUserAgent`
             ignoreBotOrAudit: false, // remove selectors in any case, not depending on Bot or Audit
-            auditUserAgent: 'lighthouse', // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
-            matchUserAgent: null, // prune if `res.header[ headerName ]` match with this value, could be a string or an array of strings
+            auditUserAgent: 'lighthouse', // prune if `res.header[ headerNameForDefaultDetection ]` match with this value, could be a string or an array of strings
+            matchUserAgent: null, // prune if `res.header[ headerNameForDefaultDetection ]` match with this value, could be a string or an array of strings
             // 👇🏻 Type: 'query-parameters', (you can also specify routes in the `nuxt.config`, ex.: `{ generate: { routes: [ '/?prune=true' ] } }` )
             queryParametersToPrune: [
                 // array of objects (key-value), trigger the pruning if 'query-parameters' is present in `types` and at least one value, ex. `/?prune=true`
@@ -192,7 +192,7 @@ ___
 
 ### Related things you should know
 
-- Usage with `types: [ 'mobile-detect' ]`, load the [MobileDetect](http://hgoebl.github.io/mobile-detect.js/) library and check if `req.headers[ headerName ]`:
+- Usage with `types: [ 'default-detect' ]`, load the [MobileDetect](http://hgoebl.github.io/default-detect.js/) library and check if `req.headers[ headerNameForDefaultDetection ]`:
   - `.is( 'bot' )`;
   - and/or `.match( options.auditUserAgent )`;
   - and/or `.match( options.matchUserAgent )`;
@@ -204,7 +204,7 @@ ___
 ### Advices
 
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *prune* is activated)**;
-- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to **always prune** (for types `mobile-detect` and/or `headers-exist`), but You can disable this behavior by setting `hookGeneratePage` to `false` (or by using type `query-parameters`);
+- If you `generate` your site it's not possibile to check *req.headers*, so, I choose to **always prune** (for types `default-detect` and/or `headers-exist`), but You can disable this behavior by setting `hookGeneratePage` to `false` (or by using type `query-parameters`);
 - If you use [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
 - This plugin was thought for *Bots / Audits* and uses only few `methods` from the `Cheerio` library;
 - You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
