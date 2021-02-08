@@ -35,7 +35,7 @@
         "lib"
     ],
     "main": "lib/module.js",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "license": "MIT",
     "author": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)",
     "contributors": [
