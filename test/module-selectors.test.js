@@ -1,7 +1,7 @@
 /*
 *   * Test utils
 */
-import { setupTest } from '@nuxt/test-utils';
+import { setupTest, getNuxt } from '@nuxt/test-utils';
 
 /*
 *   * Utils
@@ -30,21 +30,33 @@ describe(
                 config: {
                     dev: false,
                     head: {
+                        link: [
+                            {
+                                hid: 'preload-keep-me',
+                                href: '/scripts/keep-me.js',
+                                once: true,
+                                rel: 'preload',
+                                as: 'script',
+                                class: 'keeped-in-head',
+                            },
+                        ],
                         script: [
                             {
+                                hid: 'keep-me',
                                 src: '/scripts/keep-me.js',
                                 once: true,
+                                body: true,
                                 async: true,
-                                defer: true,
+                                class: 'keeped-in-head',
                             },
                         ],
                     },
                     pruneHtml: {
                         enabled: true,
-                        selectorsToKeep: [ '[src="/scripts/keep-me.js"]' ],
+                        classesToKeep: [ '.keeped-in-head' ],
                         link: [
                             {
-                                href: '/scripts/keep-me.js',
+                                href: '#',
                                 rel: 'preload',
                                 as: 'script',
                                 position: 'phead',
@@ -81,13 +93,31 @@ describe(
 
                 const { length } = await getDomElements(
                     BASE_URL,
-                    'script[src="/scripts/keep-me.js"]',
+                    '.keeped-in-head',
                     BOT_USER_AGENT
                 );
 
                 // Test
                 expect( length ).toEqual(
-                    1
+                    2
+                );
+
+            },
+        );
+
+        test(
+            'total-scripts-and-links',
+            async() => {
+
+                const { length } = await getDomElements(
+                    BASE_URL,
+                    'script, link[rel="preload"][as="script"]',
+                    BOT_USER_AGENT
+                );
+
+                // Test
+                expect( length ).toEqual(
+                    6
                 );
 
             },
@@ -144,6 +174,11 @@ describe(
 
             },
         );
+
+        /*
+        *   * Closing
+        */
+       afterAll( () => getNuxt().close() );
 
     }
 );

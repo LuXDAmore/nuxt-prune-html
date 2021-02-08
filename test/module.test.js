@@ -1,7 +1,7 @@
 /*
 *   * Test utils
 */
-import { setupTest } from '@nuxt/test-utils';
+import { setupTest, getNuxt } from '@nuxt/test-utils';
 
 /*
 *   * Utils
@@ -199,6 +199,11 @@ describe(
 
             }
         );
+
+        /*
+        *   * Closing
+        */
+        afterAll( () => getNuxt().close() );
 
     }
 );

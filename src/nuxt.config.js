@@ -220,7 +220,6 @@ export default {
         /*
         *   * Optimizations
         */
-        parallel: true,
         loaders: {
             vue: {
                 compilerOptions: {
@@ -228,11 +227,6 @@ export default {
                     whitespace: 'condense',
                 },
             },
-        },
-        splitChunks: {
-            layouts: true,
-            pages: true,
-            commons: true,
         },
         html: {
             minify: {

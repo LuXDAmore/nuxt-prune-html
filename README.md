@@ -113,7 +113,7 @@ ___
                 'link[rel="preload"][as="script"]',
                 'script:not([type="application/ld+json"])',
             ],
-            selectorsToKeep: null, // disallow pruning of scripts with this class (could be an array of classes), N.B.: each `selectorsToKeep` will be appended to every `selectors`, ex.: `script:not([type="application/ld+json"]):not(__selectorToKeep__)`
+            classesToKeep: null, // disallow pruning of scripts with this class (could be an array of classes), N.B.: each `classesToKeep` will be appended to every `selectors`, ex.: `script:not([type="application/ld+json"]):not(__classesToKeep__)`
             link: [], // Inject custom links, only if pruned
             script: [], // Inject custom scripts, only if pruned
             htmlElementClass: null, // this is a string added as a class to the <html> element
