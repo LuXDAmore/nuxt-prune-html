@@ -101,7 +101,7 @@ ___
     // nuxt.config.js
     export default {
 
-        // Module - extension
+        // Module - installation
         modules: [ '@luxdamore/nuxt-prune-html' ],
 
         // Module - default config
@@ -125,7 +125,7 @@ ___
                 xmlMode: false,
             },
             types: [
-                // it's possibile to add different rules of pruning
+                // it's possibile to add different rules for pruning
                 'default-detect',
             ],
 
@@ -153,8 +153,8 @@ ___
             headersToExcludePrune: [], // same as `queryParamToExcludePrune`, but it checks `request.headers`, this priority is over than `headersToPrune`
 
             // Emitted events for callbacks methods
-            onBeforePrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `nuxt generate`
-            onAfterPrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `nuxt generate`
+            onBeforePrune: null, // ({ result, [ req, res ] }) => {}, `req` and `res` are not available on `nuxt generate`
+            onAfterPrune: null, // ({ result, [ req, res ] }) => {}, `req` and `res` are not available on `nuxt generate`
         },
 
     };
