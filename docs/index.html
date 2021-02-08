@@ -2,7 +2,7 @@
     <span class="hljs-comment">// nuxt.config.js</span>
     <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
 
-        <span class="hljs-comment">// Module - extension</span>
+        <span class="hljs-comment">// Module - installation</span>
         <span class="hljs-attr">modules</span>: [ <span class="hljs-string">'@luxdamore/nuxt-prune-html'</span> ],
 
         <span class="hljs-comment">// Module - default config</span>
@@ -26,7 +26,7 @@
                 <span class="hljs-attr">xmlMode</span>: <span class="hljs-literal">false</span>,
             },
             <span class="hljs-attr">types</span>: [
-                <span class="hljs-comment">// it's possibile to add different rules of pruning</span>
+                <span class="hljs-comment">// it's possibile to add different rules for pruning</span>
                 <span class="hljs-string">'default-detect'</span>,
             ],
 
@@ -54,8 +54,8 @@
             <span class="hljs-attr">headersToExcludePrune</span>: [], <span class="hljs-comment">// same as `queryParamToExcludePrune`, but it checks `request.headers`, this priority is over than `headersToPrune`</span>
 
             <span class="hljs-comment">// Emitted events for callbacks methods</span>
-            <span class="hljs-attr">onBeforePrune</span>: <span class="hljs-literal">null</span>, <span class="hljs-comment">// ({ result, [ headers, res ] }) =&gt; {}, `headers` and `res` are not available on `nuxt generate`</span>
-            <span class="hljs-attr">onAfterPrune</span>: <span class="hljs-literal">null</span>, <span class="hljs-comment">// ({ result, [ headers, res ] }) =&gt; {}, `headers` and `res` are not available on `nuxt generate`</span>
+            <span class="hljs-attr">onBeforePrune</span>: <span class="hljs-literal">null</span>, <span class="hljs-comment">// ({ result, [ req, res ] }) =&gt; {}, `req` and `res` are not available on `nuxt generate`</span>
+            <span class="hljs-attr">onAfterPrune</span>: <span class="hljs-literal">null</span>, <span class="hljs-comment">// ({ result, [ req, res ] }) =&gt; {}, `req` and `res` are not available on `nuxt generate`</span>
         },
 
     };
