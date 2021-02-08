@@ -66,7 +66,7 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
   - bots doesn't handle `SPA routing`;
   - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) could lead in a slower TTI;
   - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) can contain a [static placeholder](https://nuxtjs.org/api/components-client-only/);
-- `lazy-load` for images can be fixed with a [native attribute](https://web.dev/native-lazy-loading/), or with a custom `script`/`selectorToKeep` (_check the configuration_);
+- `lazy-load` for images can be fixed with a [native attribute](https://web.dev/native-lazy-loading/), or with a custom `script`/`classesSelectorsToKeep` (_check the configuration_);
 - `hydration` **decrease** performance, so it's ok to prune it for `bots or audits`;
 - less HTML, assets and resources are served to browsers and clients;
 - bot/audit only have the Javascript they need;
@@ -150,7 +150,7 @@ ___
             // Emitted events for callbacks methods
             onBeforePrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
             onAfterPrune: null, // ({ result, [ headers, res ] }) => {}, `headers` and `res` are not available on `generate`
-        },
+        }
 
     };
 
