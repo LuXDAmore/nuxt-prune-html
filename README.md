@@ -44,8 +44,9 @@ This should **speed up** (**blazing fast**) your *nuxt-website* up to a value of
   - Match the **user agent**;
   - Match a **bot**;
   - Match an **audit**;
+  - Match a **custom-header**;
 - Prune based on **headers values** (*useful in Lambdas*);
-- Prune based on **query parameters** (*useful during navigation or generation, for an hybrid-experience*).
+- Prune based on **query parameters** (*useful during navigation, for an hybrid-experience*).
 
 ### Pro et contra
 
