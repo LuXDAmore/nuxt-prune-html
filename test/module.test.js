@@ -598,7 +598,7 @@ describe(
            {
                 server: true,
                 generate: true,
-                setupTimeout: 120000,
+                setupTimeout: 180000,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {
