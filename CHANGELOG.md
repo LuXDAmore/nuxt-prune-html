@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/LuXDAmore/nuxt-prune-html/compare/v2.0.0...v2.0.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* tests suites ([df005d8](https://github.com/LuXDAmore/nuxt-prune-html/commit/df005d8b9399b43773d5a80a78e50ace4629c665))
+
 ### [1.4.8](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.4.7...v1.4.8) (2021-01-21)
 
 ### [1.4.6](https://github.com/LuXDAmore/nuxt-prune-html/compare/v1.4.5...v1.4.6) (2021-01-21)
