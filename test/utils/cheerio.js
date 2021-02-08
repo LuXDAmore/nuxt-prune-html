@@ -83,9 +83,7 @@ script.length && script.forEach(
     )
 );
 
-const html = console.info(
-    $.html()
-);
+const html = $.html();
 
 console.info(
     html
