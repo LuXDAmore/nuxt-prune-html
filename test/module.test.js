@@ -205,7 +205,7 @@ describe(
 );
 
 /*
-*   * Module testing suite
+*   * Module testing suite - Selectors
 */
 describe(
     'module-selectors',
@@ -379,7 +379,7 @@ describe(
 );
 
 /*
-*   * Module testing suite
+*   * Module testing suite - Query parameters
 */
 describe(
     'module-query-parameters',
@@ -436,7 +436,7 @@ describe(
 );
 
 /*
-*   * Module testing suite
+*   * Module testing suite - Headers
 */
 describe(
     'module-headers',
@@ -523,7 +523,122 @@ describe(
 );
 
 /*
-*   * Module testing suite
+*   * Module testing suite - Events
+*/
+describe(
+    'module-events',
+    () => {
+
+        /*
+        *   * Nuxt setup
+        */
+        setupTest(
+           {
+                server: true,
+                testDir: __dirname,
+                fixture: '../src',
+                config: {
+                    dev: false,
+                    pruneHtml: {
+                        enabled: true,
+                        hookGeneratePage: false,
+                        onBeforePrune( { result } ) {
+
+                            result.html = '<html><h2>onBeforePruneEvent</h2>[onAfterPrune]</html>';
+
+                        },
+                        onAfterPrune( { result } ) {
+
+                            result.html = result.html.replace(
+                                '[onAfterPrune]',
+                                '<h2>onAfterPruneEvent</h2>'
+                            );
+
+                        },
+                    },
+                },
+            }
+        );
+
+        /*
+        *   * Tests
+        */
+       describe(
+        'callbacks',
+        () => {
+
+            test(
+                'on-before-prune',
+                async() => {
+
+                    const { body } = await getDomElements(
+                        BASE_URL,
+                        'html',
+                        BOT_USER_AGENT,
+                    );
+
+                    expect( body ).toContain(
+                        'onBeforePruneEvent'
+                    );
+
+                },
+            );
+
+            test(
+                'on-after-prune',
+                async() => {
+
+                    const { body } = await getDomElements(
+                        BASE_URL,
+                        'html',
+                        BOT_USER_AGENT,
+                    );
+
+                    expect( body ).toContain(
+                        'onAfterPruneEvent'
+                    );
+
+                },
+            );
+
+        }
+    );
+
+    }
+);
+
+/*
+*   * Module testing suite - Generate
+*/
+describe(
+    'module-generate',
+    () => {
+
+        /*
+        *   * Nuxt setup
+        */
+        setupTest(
+           {
+                server: true,
+                generate: true,
+                setupTimeout: 180000,
+                testDir: __dirname,
+                fixture: '../src',
+                config: {
+                    dev: false,
+                    pruneHtml: {
+                        enabled: true,
+                        hookRenderRoute: false,
+                    },
+                },
+            }
+        );
+
+    }
+);
+
+/*
+*   * Module testing suite - Deprecation
 */
 describe(
     'module-deprecations',
@@ -578,36 +693,6 @@ describe(
                     },
                 );
 
-            }
-        );
-
-    }
-);
-
-/*
-*   * Module testing suite
-*/
-describe(
-    'module-generate',
-    () => {
-
-        /*
-        *   * Nuxt setup
-        */
-        setupTest(
-           {
-                server: true,
-                generate: true,
-                setupTimeout: 180000,
-                testDir: __dirname,
-                fixture: '../src',
-                config: {
-                    dev: false,
-                    pruneHtml: {
-                        enabled: true,
-                        hookRenderRoute: false,
-                    },
-                },
             }
         );
 
