@@ -203,7 +203,7 @@ Possible values are `[ 'default-detect', 'query-parameters', 'headers-exist' ]`:
     - `isBot`, trigger `.is( 'bot' )` method;
     - `auditUserAgent` or `matchUserAgent`, trigger `.match()` method;
 - `query-parameters`: prune based on **one or more query parameter**, tests `key / value` based on `queryParametersToPrune / queryParametersToExcludePrune`:
-  - *you can also specify routes in `nuxt.config`, ex. `{ generate: { routes: [ '/?prune=true' ] } }` )*
+  - you can also specify routes in `nuxt.config`, ex. *`{ generate: { routes: [ '/?prune=true' ] } }`*
 - `headers-exist`: prune based on **one or more header**, tests `key / value` based on `headersToPrune / headersToExcludePrune`.
 
 N.B.: *It's possibile to mix different types.*
