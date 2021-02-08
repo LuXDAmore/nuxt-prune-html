@@ -31,6 +31,7 @@ describe(
                     dev: false,
                     pruneHtml: {
                         enabled: true,
+                        hookGeneratePage: false,
                     },
                 },
             }
@@ -62,7 +63,7 @@ describe(
         );
 
         /*
-        *   * Humans
+        *   * Tests for Humans
         */
         describe(
             'is-human',
@@ -108,7 +109,7 @@ describe(
         );
 
         /*
-        *   * Bots or audits
+        *   * Tests for Bots or audits
         */
         describe(
             'is-bot',
@@ -244,7 +245,8 @@ describe(
                     },
                     pruneHtml: {
                         enabled: true,
-                        classesToKeep: [ '.keeped-in-head' ],
+                        hookGeneratePage: false,
+                        classesSelectorsToKeep: [ '.keeped-in-head' ],
                         link: [
                             {
                                 href: '#',
@@ -276,7 +278,7 @@ describe(
         );
 
         /*
-        *   * Selectors
+        *   * Tests
         */
         describe(
             'scripts-and-links',
@@ -395,6 +397,7 @@ describe(
                     dev: false,
                     pruneHtml: {
                         enabled: true,
+                        hookGeneratePage: false,
                         types: [ 'query-parameters' ],
                     },
                 },
@@ -402,7 +405,7 @@ describe(
         );
 
         /*
-        *   * Query Parameters
+        *   * Tests
         */
         describe(
             'scripts-and-links',
@@ -451,6 +454,7 @@ describe(
                     dev: false,
                     pruneHtml: {
                         enabled: true,
+                        hookGeneratePage: false,
                         headerNameForDefaultDetection: 'custom-name',
                         types: [
                             'default-detect',
@@ -468,7 +472,7 @@ describe(
         );
 
         /*
-        *   * Headers
+        *   * Tests
         */
         describe(
             'custom-headers',
@@ -537,6 +541,8 @@ describe(
                     dev: false,
                     pruneHtml: {
                         enabled: true,
+                        hookGeneratePage: false,
+                        hideErrorsInConsole: true,
                         headerName: 'deprecated-old-config',
                         isLighthouse: 'deprecated-old-config',
                         ignoreBotOrLighthouse: 'deprecated-old-config',
@@ -548,7 +554,7 @@ describe(
         );
 
         /*
-        *   * Deprecations
+        *   * Tests
         */
         describe(
             'v2.0',
@@ -572,6 +578,36 @@ describe(
                     },
                 );
 
+            }
+        );
+
+    }
+);
+
+/*
+*   * Module testing suite
+*/
+describe(
+    'module-generate',
+    () => {
+
+        /*
+        *   * Nuxt setup
+        */
+        setupTest(
+           {
+                server: true,
+                generate: true,
+                setupTimeout: 120000,
+                testDir: __dirname,
+                fixture: '../src',
+                config: {
+                    dev: false,
+                    pruneHtml: {
+                        enabled: true,
+                        hookRenderRoute: false,
+                    },
+                },
             }
         );
 

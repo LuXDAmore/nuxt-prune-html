@@ -4,7 +4,7 @@ module.exports = {
     collectCoverage: true,
     collectCoverageFrom: [
         'lib/**/*.js',
-        '!lib/config.**.js',
+        '!lib/config.**',
         '!lib/logger.js',
     ],
 };
