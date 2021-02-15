@@ -241,16 +241,17 @@ ___
 
 ## 🐞 Issues
 
-Please make sure to read the [issue reporting checklist](/.github/ISSUE_TEMPLATE/bug_report.md) before opening an issue.
-Issues not conforming to the guidelines may be closed immediately.
+Please make sure to read the [**issue reporting checklist**](/.github/ISSUE_TEMPLATE/bug_report.md) before opening an issue.
+*Issues not conforming to the guidelines may be closed immediately*.
 
 ## Discussions
 
-We're using [Github Discussions](https://github.com/LuXDAmore/nuxt-prune-html/discussions) as a place to connect with other members of our community. *You are free to ask questions and share ideas, so enjoy yourself*.
+We're using [**Github discussions**](https://github.com/LuXDAmore/nuxt-prune-html/discussions) as a place to connect with other members of our community.
+*You are free to ask questions and share ideas, so enjoy yourself*.
 
 ## 👥 Contribution
 
-Please make sure to read the [contributing guide](/.github/ISSUE_TEMPLATE/feature_request.md) before making a pull request.
+Please make sure to read the [**contributing guide**](/.github/ISSUE_TEMPLATE/feature_request.md) before making a pull request.
 
 ## 📖 Changelog
 
@@ -258,7 +259,7 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 ### 📃 License
 
-[MIT License](./LICENSE) // Copyright (©) 2019-present [Luca Iaconelli](https://lucaiaconelli.it)
+[MIT License](./LICENSE) // Copyright (©) 2019-now [Luca Iaconelli](https://lucaiaconelli.it)
 
 #### 💼 Hire me
 
