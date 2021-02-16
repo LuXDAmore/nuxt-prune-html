@@ -1,3 +1,3 @@
 /* global jest */
 
-jest.setTimeout( 60000 );
+jest.setTimeout( 90000 );

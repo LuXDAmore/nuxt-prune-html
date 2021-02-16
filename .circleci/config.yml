@@ -36,3 +36,7 @@ jobs:
       - run:
           name: Coverage
           command: yarn codecov
+
+      - store_test_results:
+          path: test-results
+
