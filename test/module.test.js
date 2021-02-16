@@ -449,6 +449,7 @@ describe(
            {
                 server: true,
                 testDir: __dirname,
+                setupTimeout: 180000,
                 fixture: '../src',
                 config: {
                     dev: false,
@@ -622,8 +623,8 @@ describe(
            {
                 server: true,
                 generate: true,
-                setupTimeout: 180000,
                 testDir: __dirname,
+                setupTimeout: 360000,
                 fixture: '../src',
                 config: {
                     dev: false,
@@ -652,6 +653,7 @@ describe(
            {
                 server: true,
                 testDir: __dirname,
+                setupTimeout: 180000,
                 fixture: '../src',
                 config: {
                     dev: false,
