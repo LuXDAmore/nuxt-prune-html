@@ -241,7 +241,7 @@ ___
 
 ## 🐞 Issues
 
-Please make sure to read the [**issue reporting checklist**](/.github/ISSUE_TEMPLATE/bug_report.md) before opening an issue.
+Please make sure to read the [**issue reporting checklist**](./.github/ISSUE_TEMPLATE/bug_report.md) before opening an issue.
 *Issues not conforming to the guidelines may be closed immediately*.
 
 ## 📝 Discussions
@@ -251,7 +251,7 @@ We're using [**Github discussions**](https://github.com/LuXDAmore/nuxt-prune-htm
 
 ## 👥 Contribution
 
-Please make sure to read the [**contributing guide**](/.github/ISSUE_TEMPLATE/feature_request.md) before making a pull request.
+Please make sure to read the [**contributing guide**](./.github/ISSUE_TEMPLATE/feature_request.md) before making a pull request.
 
 ## 📖 Changelog
 
@@ -263,7 +263,7 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 #### 💼 Hire me
 
-[![Contacts](https://img.shields.io/badge/Contact%20Me-Let's%20Talk-informational?style=social&logo=minutemailer)](https://lucaiaconelli.it)
+[![Contacts](https://img.shields.io/badge/Contact%20Me-Let's%20Talk-informational?style=social&logo=minutemailer)](https://curriculumvitae.lucaiaconelli.it)
 
 #### 💸 Are you feeling generous today?
 
