@@ -89,6 +89,14 @@
                         link.textContent,
                     );
 
+                    link.getAttribute( 'href' ).startsWith( './' ) && link.setAttribute(
+                        'href',
+                        link.getAttribute( 'href' ).replace(
+                            './',
+                            'https://github.com/LuXDAmore/nuxt-prune-html/tree/master/'
+                        ),
+                    );
+
                 }
 
             },
