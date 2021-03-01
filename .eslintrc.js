@@ -17,9 +17,9 @@ module.exports = {
     },
     extends: [
         'eslint:recommended',
-        'plugin:unicorn/recommended',
-        '@nuxtjs',
         '@vue/prettier',
+        '@nuxtjs',
+        'plugin:unicorn/recommended',
         'plugin:prettier/recommended',
         'plugin:vue/strongly-recommended',
         'plugin:nuxt/recommended',
