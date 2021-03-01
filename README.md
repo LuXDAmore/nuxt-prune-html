@@ -235,7 +235,9 @@ ___
    - `yarn install` (or `npm install`);
 3. **Start** a development server:
    - `yarn dev` (or `npm run dev`);
-4. **Extra**, generate the documentation ([*Github Pages*](https://pages.github.com/)):
+4. **Test** your code:
+   - `yarn test` (or `npm run test`);
+5. **Extra**, generate the documentation ([*Github Pages*](https://pages.github.com/)):
    - `yarn generate` (or `npm run generate`);
    - _the content is automatically generated into the `/docs` folder_.
 

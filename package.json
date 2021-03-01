@@ -31,6 +31,9 @@
     "bugs": {
         "url": "https://github.com/LuXDAmore/nuxt-prune-html/issues"
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "files": [
         "lib"
     ],
@@ -43,9 +46,6 @@
             "name": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)"
         }
     ],
-    "publishConfig": {
-        "access": "public"
-    },
     "scripts": {
         "cheerio": "node test/utils/cheerio.js",
         "serve": "nuxt -o src",
@@ -110,6 +110,7 @@
         "eslint-plugin-standard": "^5.0.0",
         "eslint-plugin-unicorn": "^28.0.1",
         "eslint-plugin-vue": "^7.5.0",
+        "github-markdown-css": "^4.0.0",
         "highlight.js": "^10.6.0",
         "husky": "^5.0.9",
         "jest": "^26.6.3",

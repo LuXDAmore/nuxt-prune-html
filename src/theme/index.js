@@ -4,3 +4,4 @@ const colors = {
 };
 
 export { colors };
+export default colors;
