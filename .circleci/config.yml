@@ -40,9 +40,12 @@ jobs:
       - store_test_results:
           path: test-results
           
+      - sonarcloud/scan:
+          sonar_token_variable_name: '364f17dd08e269df0760691dbb76911ddc2a0836'
+
 # SonarCloud
 orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
+  sonarcloud: sonarsource/sonarcloud@1.0.2
 
 workflows:
   main:
