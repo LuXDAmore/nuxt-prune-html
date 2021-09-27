@@ -18,7 +18,7 @@ jobs:
 
       # SonarCloud scan
       - sonarcloud/scan:
-          sonar_token_variable_name: '364f17dd08e269df0760691dbb76911ddc2a0836'
+          sonar_token_variable_name: SONAR_TOKEN
 
       # Keep cache
       - save_cache:
