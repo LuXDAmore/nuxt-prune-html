@@ -69,6 +69,7 @@ Usually, with **less assets, resources and html** to download, the number of url
   - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) could lead in a slower TTI;
   - [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) can contain a [static placeholder](https://nuxtjs.org/api/components-client-only/);
 - Images with `lazy-load` can be fixed with a [native attribute](https://web.dev/native-lazy-loading/), with a custom `script` or with `classesSelectorsToKeep` (_check the configuration_);
+- You can pre-load ad inject **all of the data that you need** (Rest API, GraphQL, ecc) during the _build phase_ with [nuxt-apis-to-file](https://github.com/LuXDAmore/nuxt-apis-to-file), **speeding up** the website loading time;
 - `Hydration` **decrease** performance, so it's ok to prune it for `bots or audits`;
 - **Less HTML, assets and resources** are served to browsers and clients;
 - Bot/audit only have *the Javascript they need*;
@@ -223,7 +224,8 @@ ___
 
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *nuxt-prune-html* is enabled)**;
 - For [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
-- You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent).
+- You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent);
+- The [nuxt-apis-to-file](https://github.com/LuXDAmore/nuxt-apis-to-file) module can help you with **data payload extraction** during the build time.
 
 ___
 
