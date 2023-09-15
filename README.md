@@ -224,7 +224,7 @@ ___
 
 - Before setting up the module, try to [Disable JavaScript With Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/javascript/disable) while navigate your website, **this is how your website appear (when *nuxt-prune-html* is enabled)**;
 - For [`<client-only>` components](https://nuxtjs.org/api/components-client-only/) you should prepare a version that is visually the same with the [placeholder slot](https://nuxtjs.org/api/components-client-only/);
-- You can check the website as a *GoogleBot*, following [this guide](https://developers.google.com/web/tools/chrome-devtools/device-mode/override-user-agent);
+- You can check the website as a *GoogleBot*, following [this guide](https://developer.chrome.com/docs/devtools/device-mode/override-user-agent/);
 - The [nuxt-apis-to-file](https://github.com/LuXDAmore/nuxt-apis-to-file) module can help you with **data payload extraction** during the build time.
 
 ___
